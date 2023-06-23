@@ -12,5 +12,5 @@ export const routes: Routes = [{
   loadComponent: () => import('./snippets/snippets.component').then(m => m.SnippetsComponent)
 }, {
   path: '**',
-  redirectTo: 'home'
+  loadComponent: () => import('./not-found/not-found.component').then(m => m.NotFoundComponent)
 }];
