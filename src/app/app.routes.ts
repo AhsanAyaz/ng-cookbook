@@ -10,4 +10,7 @@ export const routes: Routes = [{
 }, {
   path: 's/:id',
   loadComponent: () => import('./snippets/snippets.component').then(m => m.SnippetsComponent)
+}, {
+  path: '**',
+  redirectTo: 'home'
 }];

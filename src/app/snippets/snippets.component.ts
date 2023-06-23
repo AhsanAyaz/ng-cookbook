@@ -27,8 +27,7 @@ export class SnippetsComponent implements OnInit {
             alert("Wrong snippet Id. Please contact developer")
             return;
           }
-          window.open(redirectUrl, '_blank');
-          window.close()
+          window.location.href = redirectUrl;
         })
       })
   }
