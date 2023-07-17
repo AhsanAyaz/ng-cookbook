@@ -1,5 +1,6 @@
 {
   "cdk-pane-styles": "https://gist.github.com/AhsanAyaz/db9282da17c589522aac0a3f781a7a0a",
   "popover-pc-directive": "https://gist.github.com/AhsanAyaz/5fb84af042a53959a548e256a79b42e6",
-  "services-stub-tests": "https://gist.github.com/AhsanAyaz/8fc8425009a420369bc3e6c300bb6071"
+  "services-stub-tests": "https://gist.github.com/AhsanAyaz/8fc8425009a420369bc3e6c300bb6071",
+  "ng-test-http-mock-users": "https://gist.github.com/AhsanAyaz/9d6d4daf743c13305f396458e48f3155"
 }
