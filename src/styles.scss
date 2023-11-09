@@ -8,7 +8,7 @@ html, body {
 
 
 .toolbar {
-  @apply absolute top-0 flex justify-between left-0 right-0 bg-gray-900 flex items-center h-14 text-white font-bold px-4;
+  @apply flex justify-between left-0 right-0 bg-gray-900 items-center min-h-[56px] text-white font-bold  pl-0 pr-0 md:px-4;
   &__title[routerLink] {
     cursor: pointer;
   }
