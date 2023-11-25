@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng-cookbook",
+            "outputPath": "dist/ng-cookbook/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ng-cookbook:build:production"
+              "buildTarget": "ng-cookbook:build:production"
             },
             "development": {
-              "browserTarget": "ng-cookbook:build:development"
+              "buildTarget": "ng-cookbook:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-cookbook:build"
+            "buildTarget": "ng-cookbook:build"
           }
         },
         "test": {
@@ -105,6 +105,61 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/ng-cookbook/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "ng-cookbook:build:development",
+              "serverTarget": "ng-cookbook:server:development"
+            },
+            "production": {
+              "browserTarget": "ng-cookbook:build:production",
+              "serverTarget": "ng-cookbook:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ng-cookbook:build:production",
+              "serverTarget": "ng-cookbook:server:production"
+            },
+            "development": {
+              "browserTarget": "ng-cookbook:build:development",
+              "serverTarget": "ng-cookbook:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
