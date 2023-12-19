@@ -1,11 +1,11 @@
 {
-  "name": "ng-cookbook",
+  "name": "Angular Cookbook",
   "short_name": "ng-cookbook",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
-  "start_url": "./",
+  "start_url": "https://ng-cookbook.com",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
