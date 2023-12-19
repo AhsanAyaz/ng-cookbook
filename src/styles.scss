@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Nunito';
+  src: url(assets/fonts/Nunito-Regular.ttf);
+  font-display: swap;
+}
+
 html, body {
   font-family: 'Nunito', sans-serif;
 }
