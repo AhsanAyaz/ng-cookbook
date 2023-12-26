@@ -1,5 +1,5 @@
 .books-container {
-  @apply grid grid-cols-1 md:grid-cols-2 place-content-center items-center min-h-[150px] sm:min-h-[200px] gap-4 items-center justify-center max-w-md;
+  @apply grid grid-cols-1 sm:grid-cols-2 place-content-center gap-4 items-center h-full justify-center max-w-md;
   .book-image-card {
     @apply h-full flex flex-col gap-4 justify-center items-center hover:-translate-y-2 duration-200;
     img, h2 {
