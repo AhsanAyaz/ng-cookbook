@@ -6,6 +6,7 @@ import { getAnalytics, logEvent } from '@angular/fire/analytics';
 enum AnalyticsEvent {
   NGCB1_CLICK = 'ng-cookbook-1 link clicked',
   NGCB2_CLICK = 'ng-cookbook-2 link clicked',
+  NGCB2_GH_CLICK = 'ng-cookbook-2 github link clicked',
 }
 
 @Component({

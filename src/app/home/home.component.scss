@@ -7,10 +7,10 @@
     }
     &:hover {
       img {
-        @apply shadow-md shadow-purple-800;
+        @apply drop-shadow-lg;
       }
       h2 {
-        @apply text-purple-800;
+        @apply text-purple-800 font-bold;
       }
     }
   }
