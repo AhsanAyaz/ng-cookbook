@@ -16,7 +16,7 @@
 </div>
 <main class="min-h-screen max-w-md p-6 mx-auto flex flex-col gap-6">
   <div class="books-container">
-    <a target="_blank" class="book-image-card" rel="noreferrer noopener" href="https://www.amazon.com/Angular-Cookbook-recipes-enterprise-scale-development-dp-1838989439/dp/1838989439/">
+    <a (click)="sendAnalyticsEvent(events.NGCB1_CLICK)" target="_blank" class="book-image-card" rel="noreferrer noopener" href="https://www.amazon.com/Angular-Cookbook-recipes-enterprise-scale-development-dp-1838989439/dp/1838989439/">
       <img width="192" height="237" alt="ng-cookbook 1st edition" class="w-[80px] sm:w-[200px] h-[100px] sm:h-[237px]" src="assets/ng-cookbook-1.jpg"/>
       <div class="flex flex-col flex-1 w-full items-center">
         <h2 class="flex-1 text-center">
@@ -27,7 +27,7 @@
         </div>
       </div>
     </a>
-    <a target="_blank" class="book-image-card" rel="noreferrer noopener" href="https://amzn.to/4awwLgH">
+    <a (click)="sendAnalyticsEvent(events.NGCB2_CLICK)" target="_blank" class="book-image-card" rel="noreferrer noopener" href="https://amzn.to/4awwLgH">
       <img width="192" height="237" alt="ng-cookbook 2nd edition" class="w-[80px] sm:w-[200px] h-[100px] sm:h-[237px]" src="assets/ng-cookbook-black.jpg"/>
       <h2 class="w-full text-center">Angular Cookbook 2nd Edition</h2>
     </a>
