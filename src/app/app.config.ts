@@ -3,7 +3,11 @@ import {
   isDevMode,
   importProvidersFrom,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {
+  provideRouter,
+  withComponentInputBinding,
+  withHashLocation,
+} from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { routes } from './app.routes';
@@ -18,7 +22,7 @@ import {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding(), withHashLocation()),
     provideHttpClient(withFetch()),
     provideClientHydration(),
     provideServiceWorker('ngsw-worker.js', {

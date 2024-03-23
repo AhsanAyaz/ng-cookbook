@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MailchimpNg2eComponent } from '../components/mailchimp-ng2e/mailchimp-ng2e.component';
 import { getAnalytics, logEvent } from '@angular/fire/analytics';
+import { HeaderComponent } from '../components/header/header.component';
 
 enum AnalyticsEvent {
   NGCB1_CLICK = 'ng-cookbook-1 link clicked',
@@ -12,7 +13,7 @@ enum AnalyticsEvent {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MailchimpNg2eComponent],
+  imports: [CommonModule, MailchimpNg2eComponent, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })

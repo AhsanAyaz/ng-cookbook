@@ -57,3 +57,7 @@ html, body {
 .spacer {
   flex: 1;
 }
+
+a[href] {
+  @apply text-purple-700 cursor-pointer;
+}
