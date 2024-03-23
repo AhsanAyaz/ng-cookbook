@@ -12,8 +12,8 @@
       <h2 class="text-3xl mb-4">Thank You!</h2>
       <section class="flex flex-col gap-4">
         <h4>
-          Hey reader, I want to thank you for getting a copy of the
-          Angular Cookbook 2nd Edition!
+          Hey reader, I want to thank you for getting a copy of the Angular
+          Cookbook 2nd Edition!
         </h4>
         <p class="my-2">
           If you found the book useful, do consider giving it a review
@@ -46,4 +46,13 @@
       </section>
     </div>
   </section>
+
+  @if (session(); as session) {
+  <hr class="my-4" />
+  <section class="mt-6 flex flex-col gap-4 text-center">
+    <h3 class="text-lg">See recipe reviews</h3>
+    <h2 class="text-xl font-bold">{{session.title}}</h2>
+    <iframe [src]="reviewLink()" class="w-full py-10" height="500"></iframe>
+  </section>
+  }
 </main>
