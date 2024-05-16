@@ -1,19 +1,54 @@
 <app-header></app-header>
 <main class="min-h-screen max-w-md p-6 mx-auto flex flex-col gap-6">
   <div class="books-container justify-center">
-    <a (click)="sendAnalyticsEvent(events.NGCB2_CLICK)" class="book-image-card" target="_blank" rel="noreferrer noopener" href="https://amzn.to/4awwLgH">
-      <img width="192" height="237" alt="ng-cookbook 2nd edition" class="w-[180px] object-contain sm:object-cover sm:w-[200px] h-[100px] sm:h-[237px]" src="assets/ng-cookbook-2.png"/>
+    <a
+      (click)="sendAnalyticsEvent(events.NGCB2_CLICK)"
+      class="book-image-card"
+      target="_blank"
+      rel="noreferrer noopener"
+      href="https://amzn.to/4awwLgH"
+    >
+      <img
+        width="192"
+        height="237"
+        alt="ng-cookbook 2nd edition"
+        class="w-[180px] object-contain sm:object-cover sm:w-[200px] h-[100px] sm:h-[237px]"
+        src="assets/ng-cookbook-2.png"
+      />
       <h2 class="w-full text-center font-bold">Angular Cookbook 2nd Edition</h2>
       <div class="flex items-center">
-        <span>⭐⭐⭐⭐⭐</span>
+        <span>⭐⭐⭐⭐</span><span class="half-star">⭐</span>
       </div>
     </a>
   </div>
-  <p class="text-lg"><a target="_blank" rel="noreferrer noopener" class="text-purple-700" (click)="sendAnalyticsEvent(events.NGCB2_CLICK)" href="https://amzn.to/4awwLgH">Angular Cookbook (2nd Edition)</a> has been released on December 29th, 2023 with new and updated recipes including the
-    <a class="text-purple-700 cursor-pointer hover:underline" target="_blank" href="https://youtu.be/bjU2OBq_ASc">
-      new features from Angular v17
-    </a>.
-  Be the first to know when there's an update to the <a target="_blank" rel="noreferrer noopener" (click)="sendAnalyticsEvent(events.NGCB2_GH_CLICK)" class="text-purple-700" href="https://github.com/PacktPublishing/Angular-Cookbook-2E">code-base</a> and about the discounts/coupons.</p>
+  <p class="text-lg">
+    <a
+      target="_blank"
+      rel="noreferrer noopener"
+      class="text-purple-700"
+      (click)="sendAnalyticsEvent(events.NGCB2_CLICK)"
+      href="https://amzn.to/4awwLgH"
+      >Angular Cookbook (2nd Edition)</a
+    >
+    has been released on December 29th, 2023 with new and updated recipes
+    including the
+    <a
+      class="text-purple-700 cursor-pointer hover:underline"
+      target="_blank"
+      href="https://youtu.be/bjU2OBq_ASc"
+    >
+      new features from Angular v17 </a
+    >. Be the first to know when there's an update to the
+    <a
+      target="_blank"
+      rel="noreferrer noopener"
+      (click)="sendAnalyticsEvent(events.NGCB2_GH_CLICK)"
+      class="text-purple-700"
+      href="https://github.com/PacktPublishing/Angular-Cookbook-2E"
+      >code-base</a
+    >
+    and about the discounts/coupons.
+  </p>
   <section>
     <app-mailchimp-ng2e></app-mailchimp-ng2e>
   </section>
