@@ -1,5 +1,5 @@
 .books-container {
-  @apply flex flex-col md:flex-row gap-4 items-center h-full max-w-md;
+  @apply flex flex-col md:flex-row gap-4 items-center h-full w-full;
   .book-image-card {
     @apply h-full flex flex-col gap-4 justify-center items-center hover:-translate-y-2 duration-200;
     img, h2 {

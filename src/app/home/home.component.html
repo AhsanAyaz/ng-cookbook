@@ -1,5 +1,7 @@
 <app-header></app-header>
-<main class="min-h-screen max-w-md p-6 mx-auto flex flex-col gap-6">
+<main
+  class="min-h-screen max-w-md md:max-w-3xl p-6 mx-auto flex flex-col gap-6"
+>
   <div class="books-container justify-center">
     <a
       (click)="sendAnalyticsEvent(events.NGCB2_CLICK)"
@@ -19,36 +21,117 @@
       <div class="flex items-center">
         <span>⭐⭐⭐⭐</span><span class="half-star">⭐</span>
       </div>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://amzn.to/4awwLgH"
+        class="rounded-md duration-200 hover:bg-yellow-500 px-3 py-1.5 bg-yellow-400 text-black font-semibold"
+      >
+        Buy
+      </a>
     </a>
   </div>
-  <p class="text-lg">
-    <a
-      target="_blank"
-      rel="noreferrer noopener"
-      class="text-purple-700"
-      (click)="sendAnalyticsEvent(events.NGCB2_CLICK)"
-      href="https://amzn.to/4awwLgH"
-      >Angular Cookbook (2nd Edition)</a
-    >
-    has been released on December 29th, 2023 with new and updated recipes
-    including the
-    <a
-      class="text-purple-700 cursor-pointer hover:underline"
-      target="_blank"
-      href="https://youtu.be/bjU2OBq_ASc"
-    >
-      new features from Angular v17 </a
-    >. Be the first to know when there's an update to the
-    <a
-      target="_blank"
-      rel="noreferrer noopener"
-      (click)="sendAnalyticsEvent(events.NGCB2_GH_CLICK)"
-      class="text-purple-700"
-      href="https://github.com/PacktPublishing/Angular-Cookbook-2E"
-      >code-base</a
-    >
-    and about the discounts/coupons.
+  <p dir="auto">
+    Angular is one of the most popular frameworks in the world for building not
+    only web applications but even mobile and desktop applications as well.
+    Backed by Google and used by Google, this framework is used by millions of
+    applications. Although the framework is well-suited for applications of any
+    scale, enterprises particularly favor Angular due to its opinionated nature
+    and its consistent ecosystem, which includes all the tools necessary for
+    creating modern &amp; production-ready web applications. While learning the
+    core technologies such as JavaScript, HTML, and CSS is an absolute essential
+    to progress as a web developer, when it comes to a framework, learning the
+    core concepts of the framework itself is important too. When we’re dealing
+    with Angular, there are a lot of amazing things we can do with our web
+    applications by learning about, and using, the right tools in the Angular
+    ecosystem. That’s where this book comes in. This book was written for
+    intermediate and advanced Angular developers to polish their Angular
+    development skills with recipes that you can follow easily, play around
+    with, and practice your own variations of. You’ll not only learn from the
+    recipes themselves but also from the actual real-life projects associated
+    with the recipes. So, there are a lot of hidden gems in these recipes and
+    projects for you. Happy coding!
   </p>
+  <ol dir="auto" class="list-auto pl-4">
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter01"
+        >Winning Component Communication</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter02"
+        >Working with Angular Directives and Built-In Control Flow</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter03"
+        >The Magic of Dependency Injection in Angular</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter04"
+        >Understanding Angular Animations</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter05"
+        >Angular and RxJS – Awesomeness Combined</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter06"
+        >Reactive State Management with NgRx</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter07"
+        >Understanding Angular Navigation and Routing</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter08"
+        >Mastering Angular Forms</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter09"
+        >Angular and the Angular CDK</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter10"
+        >Writing Unit Tests in Angular with Jest</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter11"
+        >E2E Tests in Angular with Cypress</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter12"
+        >Performance Optimization in Angular</a
+      >
+    </li>
+    <li>
+      <a
+        target="_blank" rel="noopener noreferrer" href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter13"
+        >Building PWAs with Angular</a
+      >
+    </li>
+  </ol>
   <section>
     <app-mailchimp-ng2e></app-mailchimp-ng2e>
   </section>
