@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/buy"
+  to = "https://amzn.to/4awwLgH"
+  status = 301
+  force = false
