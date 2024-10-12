@@ -22,12 +22,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ng-cookbook/browser",
+            "outputPath": {
+              "base": "dist/ng-cookbook"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -37,10 +40,17 @@
               "src/robots.txt",
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": [],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "serviceWorker": "ngsw-config.json",
+            "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -59,9 +69,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -101,59 +109,6 @@
             "styles": ["src/styles.scss"],
             "scripts": []
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/ng-cookbook/server",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json",
-            "inlineStyleLanguage": "scss"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "sourceMap": true,
-              "extractLicenses": false,
-              "vendorChunk": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@angular-devkit/build-angular:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "ng-cookbook:build:development",
-              "serverTarget": "ng-cookbook:server:development"
-            },
-            "production": {
-              "browserTarget": "ng-cookbook:build:production",
-              "serverTarget": "ng-cookbook:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "routes": ["/"]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "ng-cookbook:build:production",
-              "serverTarget": "ng-cookbook:server:production"
-            },
-            "development": {
-              "browserTarget": "ng-cookbook:build:development",
-              "serverTarget": "ng-cookbook:server:development"
-            }
-          },
-          "defaultConfiguration": "production"
         }
       }
     }
