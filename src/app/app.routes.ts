@@ -5,7 +5,15 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadComponent: () =>
-      import('./home/home.component').then((m) => m.HomeComponent),
+      // import('./home/home.component').then((m) => m.HomeComponent),
+      import('./landing/landing.component').then((m) => m.LandingComponent),
+  },
+  {
+    path: 'landing',
+    loadComponent: () =>
+      import('./landing-personal/landing-personal.component').then(
+        (m) => m.LandingPersonalComponent
+      ),
   },
   {
     path: 'thank-you',

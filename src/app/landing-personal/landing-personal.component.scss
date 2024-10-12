@@ -1,0 +1,8 @@
+@tailwind components;
+
+.dark {
+  @apply text-white;
+}
+#topnav:not(.nav-sticky) {
+  @extend .dark;
+}

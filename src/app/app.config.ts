@@ -19,6 +19,58 @@ import {
   provideAnalytics,
   ScreenTrackingService,
 } from '@angular/fire/analytics';
+import { FeatherModule } from 'angular-feather';
+import {
+  Camera,
+  Heart,
+  Github,
+  X,
+  User,
+  Mail,
+  Book,
+  MessageCircle,
+  PieChart,
+  Briefcase,
+  Target,
+  Monitor,
+  Eye,
+  Layout,
+  Feather,
+  Code,
+  UserCheck,
+  Globe,
+  Settings,
+  Facebook,
+  Instagram,
+  Linkedin,
+  ArrowUp,
+  ShoppingCart,
+} from 'angular-feather/icons';
+
+const icons = {
+  ArrowUp,
+  X,
+  User,
+  Mail,
+  Book,
+  MessageCircle,
+  PieChart,
+  Briefcase,
+  Target,
+  Monitor,
+  Heart,
+  Eye,
+  Layout,
+  Feather,
+  Code,
+  UserCheck,
+  Globe,
+  Settings,
+  Facebook,
+  Instagram,
+  Linkedin,
+  ShoppingCart,
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -44,5 +96,6 @@ export const appConfig: ApplicationConfig = {
     ),
     importProvidersFrom(provideAnalytics(() => getAnalytics())),
     ScreenTrackingService,
+    importProvidersFrom(FeatherModule.pick(icons)),
   ],
 };

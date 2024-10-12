@@ -2,16 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./styles/topnav";
+@import "./styles/helper";
+@import "./styles/testi";
+
 @font-face {
-  font-family: 'Nunito';
+  font-family: "Nunito";
   src: url(assets/fonts/Nunito-Regular.ttf);
   font-display: swap;
 }
 
-html, body {
-  font-family: 'Nunito', sans-serif;
+html,
+body {
+  font-family: "Nunito", sans-serif;
 }
-
 
 .toolbar {
   @apply flex justify-between left-0 right-0 bg-gray-900 items-center min-h-[56px] text-white font-bold  pl-0 pr-0 md:px-4;
@@ -58,6 +62,6 @@ html, body {
   flex: 1;
 }
 
-a[href] {
-  @apply text-purple-700 cursor-pointer;
-}
+// a[href] {
+//   @apply text-purple-700 cursor-pointer;
+// }
