@@ -1,16 +1,14 @@
-import { AfterViewInit, Directive } from '@angular/core';
-
-declare var Gumshoe: any;
-declare var Tobii: any;
-declare var jarallax: any;
+import { AfterViewInit, Directive, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Directive({
   selector: '[appBehaviors]',
   standalone: true,
 })
 export class BehaviorsDirective implements AfterViewInit {
+  document = inject(DOCUMENT);
   ngAfterViewInit() {
-    window.addEventListener('load', fn, false);
+    this.document.addEventListener('load', fn, false);
 
     //  window.onload = function loader() {
     function fn() {
@@ -123,8 +121,8 @@ export class BehaviorsDirective implements AfterViewInit {
     /*********************/
     /*  Clickable manu   */
     /*********************/
-    if (document.getElementById('navigation')) {
-      const elements = document
+    if (this.document.getElementById('navigation')) {
+      const elements = this.document
         .getElementById('navigation')!
         .getElementsByTagName('a');
       for (var i = 0, len = elements.length; i < len; i++) {
@@ -143,21 +141,21 @@ export class BehaviorsDirective implements AfterViewInit {
     /*********************/
     /*   Menu Sticky     */
     /*********************/
-    function windowScroll() {
-      const navbar = document.getElementById('topnav');
+    const windowScroll = () => {
+      const navbar = this.document.getElementById('topnav');
       if (navbar != null) {
         if (
-          document.body.scrollTop >= 50 ||
-          document.documentElement.scrollTop >= 50
+          this.document.body.scrollTop >= 50 ||
+          this.document.documentElement.scrollTop >= 50
         ) {
           navbar.classList.add('nav-sticky');
         } else {
           navbar.classList.remove('nav-sticky');
         }
       }
-    }
+    };
 
-    window.addEventListener('scroll', (ev) => {
+    this.document.addEventListener('scroll', (ev) => {
       ev.preventDefault();
       windowScroll();
     });
@@ -165,16 +163,16 @@ export class BehaviorsDirective implements AfterViewInit {
     /*    Back To TOp    */
     /*********************/
 
-    window.onscroll = function () {
+    this.document.onscroll = () => {
       scrollFunction();
     };
 
-    function scrollFunction() {
-      var mybutton = document.getElementById('back-to-top');
+    const scrollFunction = () => {
+      var mybutton = this.document.getElementById('back-to-top');
       if (mybutton != null) {
         if (
-          document.body.scrollTop > 500 ||
-          document.documentElement.scrollTop > 500
+          this.document.body.scrollTop > 500 ||
+          this.document.documentElement.scrollTop > 500
         ) {
           mybutton.classList.add('block');
           mybutton.classList.remove('hidden');
@@ -183,7 +181,7 @@ export class BehaviorsDirective implements AfterViewInit {
           mybutton.classList.remove('block');
         }
       }
-    }
+    };
 
     //=========================================//
     /*/*            08) Tobii lightbox         */
@@ -197,12 +195,12 @@ export class BehaviorsDirective implements AfterViewInit {
     /*/*            Top Function               */
     //=========================================//
 
-    function topFunction() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    }
+    const topFunction = () => {
+      this.document.body.scrollTop = 0;
+      this.document.documentElement.scrollTop = 0;
+    };
 
-    const topBtn = document.getElementById('back-to-top');
+    const topBtn = this.document.getElementById('back-to-top');
     if (topBtn) {
       topBtn.addEventListener('click', topFunction);
     }
@@ -210,13 +208,13 @@ export class BehaviorsDirective implements AfterViewInit {
     /*********************/
     /*  Active Sidebar   */
     /*********************/
-    (function () {
-      var current = location.pathname.substring(
-        location.pathname.lastIndexOf('/') + 1
+    (() => {
+      const current = this.document.location.pathname.substring(
+        this.document.location.pathname.lastIndexOf('/') + 1
       );
       if (current === '') return;
-      var menuItems = document.querySelectorAll('.sidebar-nav a');
-      for (var i = 0, len = menuItems.length; i < len; i++) {
+      const menuItems = this.document.querySelectorAll('.sidebar-nav a');
+      for (let i = 0, len = menuItems.length; i < len; i++) {
         if (menuItems[i].getAttribute('href')?.indexOf(current) !== -1) {
           menuItems[i].parentElement!.className += ' active';
         }
@@ -227,8 +225,8 @@ export class BehaviorsDirective implements AfterViewInit {
      * Jarallax
      */
 
-    if (jarallax) {
-      jarallax(document.querySelectorAll('.jarallax'));
+    if ('jarallax' in globalThis) {
+      jarallax(this.document.querySelectorAll('.jarallax'));
     }
 
     /*********************/
@@ -240,7 +238,7 @@ export class BehaviorsDirective implements AfterViewInit {
     /*     Small Menu    */
     /*********************/
     try {
-      var spy = new Gumshoe('#navmenu-nav a');
+      const spy = new Gumshoe('#navmenu-nav a');
     } catch (err) {}
 
     // /*********************/
@@ -332,7 +330,7 @@ export class BehaviorsDirective implements AfterViewInit {
     /* Dark & Light Mode */
     /*********************/
     try {
-      function changeTheme(e: Event) {
+      const changeTheme = (e: Event) => {
         e.preventDefault();
         const htmlTag = document.getElementsByTagName('html')[0];
 
@@ -341,15 +339,15 @@ export class BehaviorsDirective implements AfterViewInit {
         } else {
           htmlTag.className = 'dark';
         }
-      }
+      };
 
-      const switcher = document.getElementById('theme-mode');
+      const switcher = this.document.getElementById('theme-mode');
       switcher?.addEventListener('click', changeTheme);
 
-      const chk = document.getElementById('chk');
+      const chk = this.document.getElementById('chk');
 
       chk?.addEventListener('change', changeTheme);
-      const htmlTag = document.getElementsByTagName('html')[0];
+      const htmlTag = this.document.getElementsByTagName('html')[0];
       htmlTag.className = 'dark';
     } catch (err) {}
 
@@ -357,17 +355,17 @@ export class BehaviorsDirective implements AfterViewInit {
     /* LTR & RTL Mode */
     /*********************/
     try {
-      const htmlTag = document.getElementsByTagName('html')[0];
-      function changeLayout(e: Event) {
+      const htmlTag = this.document.getElementsByTagName('html')[0];
+      const changeLayout = (e: Event) => {
         e.preventDefault();
-        const switcherRtl = document.getElementById('switchRtl');
+        const switcherRtl = this.document.getElementById('switchRtl');
         if (switcherRtl?.innerText === 'LTR') {
           htmlTag.dir = 'ltr';
         } else {
           htmlTag.dir = 'rtl';
         }
-      }
-      const switcherRtl = document.getElementById('switchRtl');
+      };
+      const switcherRtl = this.document.getElementById('switchRtl');
       switcherRtl?.addEventListener('click', changeLayout);
     } catch (err) {}
   }

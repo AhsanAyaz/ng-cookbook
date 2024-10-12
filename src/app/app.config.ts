@@ -81,20 +81,18 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    importProvidersFrom(
-      provideFirebaseApp(() =>
-        initializeApp({
-          projectId: 'ng-cookbook-4d102',
-          appId: '1:1038411915746:web:202192e0e2a689e86419bb',
-          storageBucket: 'ng-cookbook-4d102.appspot.com',
-          apiKey: 'AIzaSyDkwAMJ4ZBGY0AWQsvWy1p8wtCmLjfeu4I',
-          authDomain: 'ng-cookbook-4d102.firebaseapp.com',
-          messagingSenderId: '1038411915746',
-          measurementId: 'G-Z1P15PWEJQ',
-        })
-      )
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'ng-cookbook-4d102',
+        appId: '1:1038411915746:web:202192e0e2a689e86419bb',
+        storageBucket: 'ng-cookbook-4d102.appspot.com',
+        apiKey: 'AIzaSyDkwAMJ4ZBGY0AWQsvWy1p8wtCmLjfeu4I',
+        authDomain: 'ng-cookbook-4d102.firebaseapp.com',
+        messagingSenderId: '1038411915746',
+        measurementId: 'G-Z1P15PWEJQ',
+      })
     ),
-    importProvidersFrom(provideAnalytics(() => getAnalytics())),
+    provideAnalytics(() => getAnalytics()),
     ScreenTrackingService,
     importProvidersFrom(FeatherModule.pick(icons)),
   ],
