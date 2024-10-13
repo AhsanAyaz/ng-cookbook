@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
   Directive,
   inject,
@@ -12,6 +13,7 @@ import {
 })
 export class BookHeightDirective implements AfterViewInit, OnDestroy {
   el = inject(ElementRef);
+  document = inject(DOCUMENT);
   resizeObserver!: () => void;
 
   ngAfterViewInit(): void {
@@ -35,11 +37,11 @@ export class BookHeightDirective implements AfterViewInit, OnDestroy {
     };
 
     updateHeight(); // Initial height calculation
-    window.addEventListener('resize', updateHeight);
+    this.document.addEventListener('resize', updateHeight);
     this.resizeObserver = updateHeight; // Store reference for cleanup
   }
 
   ngOnDestroy(): void {
-    window.removeEventListener('resize', this.resizeObserver);
+    this.document.removeEventListener('resize', this.resizeObserver);
   }
 }

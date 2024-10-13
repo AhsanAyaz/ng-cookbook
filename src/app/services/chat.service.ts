@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 export interface Message {
@@ -28,9 +27,9 @@ export class ChatService {
   streamingMessage$ = this.streamingMessageSubject.asObservable();
   suggestedQuestions$ = this.suggestedQuestionsSubject.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  sendMessage(content: string): void {
+  async sendMessage(content: string): Promise<void> {
     const newMessage: Message = {
       id: this.generateId(),
       createdAt: new Date().toISOString(),
@@ -40,52 +39,72 @@ export class ChatService {
     const currentMessages = this.messagesSubject.getValue();
     this.messagesSubject.next([...currentMessages, newMessage]);
 
-    this.http
-      .post(
-        this.apiUrl,
-        { messages: this.messagesSubject.getValue() },
-        { responseType: 'text' }
-      )
-      .subscribe({
-        next: (response) => {
-          this.handleStreamingResponse(response);
+    try {
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        error: (error) => {
-          console.error('Error:', error);
-          this.addAssistantMessage('Sorry, an error occurred.');
-        },
+        body: JSON.stringify({ messages: this.messagesSubject.getValue() }),
       });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const reader = response.body?.getReader();
+      if (!reader) {
+        throw new Error('Unable to read response');
+      }
+
+      await this.handleStreamingResponse(reader);
+    } catch (error) {
+      console.error('Error:', error);
+      this.addAssistantMessage('Sorry, an error occurred.');
+    }
   }
 
-  private handleStreamingResponse(response: string): void {
+  private async handleStreamingResponse(
+    reader: ReadableStreamDefaultReader<Uint8Array>
+  ): Promise<void> {
     let assistantMessage = '';
-    const chunks = response.split('\n');
+    const decoder = new TextDecoder();
 
-    chunks.forEach((chunk) => {
-      if (chunk.trim() === '') return;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
 
-      const parsedChunk = this.parseChunk(chunk);
-      if (parsedChunk) {
-        switch (parsedChunk.type) {
-          case 'content':
-            assistantMessage += parsedChunk.data;
-            this.streamingMessageSubject.next(parsedChunk.data);
-            break;
-          case 'suggested_questions':
-            this.suggestedQuestionsSubject.next(parsedChunk.data);
-            break;
-          case 'event':
-          case 'sources':
-            // Handle events and sources if needed
-            console.log(parsedChunk.type, parsedChunk.data);
-            break;
+      const chunk = decoder.decode(value, { stream: true });
+      const lines = chunk.split('\n');
+
+      for (const line of lines) {
+        if (line.trim() === '') continue;
+
+        const parsedChunk = this.parseChunk(line);
+        if (parsedChunk) {
+          if (parsedChunk.data.trim?.() === '') continue;
+          switch (parsedChunk.type) {
+            case 'content':
+              assistantMessage += parsedChunk.data;
+              this.streamingMessageSubject.next(parsedChunk.data);
+              break;
+            case 'suggested_questions':
+              this.suggestedQuestionsSubject.next(parsedChunk.data);
+              break;
+            case 'event':
+            case 'sources':
+              // Handle events and sources if needed
+              console.log(parsedChunk.type, parsedChunk.data);
+              break;
+          }
         }
       }
-    });
+    }
 
     if (assistantMessage) {
       this.addAssistantMessage(assistantMessage);
     }
+    this.streamingMessageSubject.next('ACTION: streaming_done');
   }
 
   private parseChunk(chunk: string): StreamChunk | null {

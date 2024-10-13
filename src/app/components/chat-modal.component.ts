@@ -9,13 +9,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChatService, Message } from '../services/chat.service';
 import { Subscription } from 'rxjs';
-
+import { MarkdownComponent } from './markdown/markdown.component';
 @Component({
   selector: 'app-chat-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MarkdownComponent],
   template: `
-    <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl mx-auto">
+    <div
+      class="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl mx-auto overflow-y-auto max-h-[60vh]"
+    >
       <h2 class="text-2xl font-bold mb-4">Chat</h2>
       <div #chatContainer class="h-96 overflow-y-auto mb-4 p-4 border rounded">
         <div *ngFor="let message of messages" class="mb-4">
@@ -28,7 +30,7 @@ import { Subscription } from 'rxjs';
                   message.role === 'assistant'
               }"
             >
-              {{ message.content }}
+              <app-markdown [content]="message.content"></app-markdown>
             </span>
           </div>
           <div *ngIf="message.role === 'assistant'" class="mt-2">
@@ -48,10 +50,10 @@ import { Subscription } from 'rxjs';
             Regenerate
           </button>
         </div>
-        <div *ngIf="streamingMessage" class="mb-4">
-          <span class="bg-gray-100 text-gray-800 p-2 rounded-lg inline-block">{{
-            streamingMessage
-          }}</span>
+        <div *ngIf="streamingMessage" class="mb-4" id="streamingMessage">
+          <span class="bg-gray-100 text-gray-800 p-2 rounded-lg inline-block">
+            <app-markdown [content]="streamingMessage"></app-markdown>
+          </span>
         </div>
       </div>
       <div class="flex">
@@ -89,7 +91,11 @@ export class ChatModalComponent implements OnInit, OnDestroy {
         this.scrollToBottom();
       }),
       this.chatService.streamingMessage$.subscribe((content) => {
-        this.streamingMessage += content;
+        if (content === 'ACTION: streaming_done') {
+          this.streamingMessage = '';
+        } else {
+          this.streamingMessage += content;
+        }
         this.scrollToBottom();
       }),
       this.chatService.suggestedQuestions$.subscribe((questions) => {
@@ -103,20 +109,20 @@ export class ChatModalComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
-  sendMessage(content: string = this.userInput) {
+  async sendMessage(content: string = this.userInput) {
     if (content.trim() === '') return;
     this.userInput = '';
     this.streamingMessage = '';
     this.suggestedQuestions = [];
-    this.chatService.sendMessage(content);
+    await this.chatService.sendMessage(content);
   }
 
-  regenerateResponse(message: Message) {
+  async regenerateResponse(message: Message) {
     const index = this.messages.indexOf(message);
     if (index > 0 && this.messages[index - 1].role === 'user') {
       const userMessage = this.messages[index - 1].content;
       this.messages.splice(index, 1);
-      this.sendMessage(userMessage);
+      await this.sendMessage(userMessage);
     }
   }
 

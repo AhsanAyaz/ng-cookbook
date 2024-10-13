@@ -9,6 +9,7 @@ import {
   withHashLocation,
 } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideMarkdown } from 'ngx-markdown';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -92,8 +93,10 @@ export const appConfig: ApplicationConfig = {
         measurementId: 'G-Z1P15PWEJQ',
       })
     ),
+    provideMarkdown(),
     provideAnalytics(() => getAnalytics()),
     ScreenTrackingService,
     importProvidersFrom(FeatherModule.pick(icons)),
+    provideHttpClient(withFetch()),
   ],
 };
