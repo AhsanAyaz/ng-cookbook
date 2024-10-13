@@ -82,7 +82,7 @@ export class ChatService {
 
         const parsedChunk = this.parseChunk(line);
         if (parsedChunk) {
-          if (parsedChunk.data.trim?.() === '') continue;
+          if (parsedChunk.data === '') continue;
           switch (parsedChunk.type) {
             case 'content':
               assistantMessage += parsedChunk.data;
@@ -109,11 +109,14 @@ export class ChatService {
 
   private parseChunk(chunk: string): StreamChunk | null {
     if (chunk.startsWith('0:')) {
-      return { type: 'content', data: chunk.slice(2).replace(/^"|"$/g, '') };
+      return {
+        type: 'content',
+        data: decodeURIComponent(chunk.slice(2).replace(/^"|"$/g, '')),
+      };
     }
     if (chunk.startsWith('8:')) {
       try {
-        const parsed = JSON.parse(chunk.slice(2));
+        const parsed = JSON.parse(decodeURIComponent(chunk.slice(2)));
         if (Array.isArray(parsed) && parsed.length > 0) {
           const { type, data } = parsed[0];
           return { type, data };

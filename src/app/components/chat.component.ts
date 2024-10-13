@@ -12,7 +12,7 @@ import { ChatModalComponent } from './chat-modal.component';
   template: `
     <button
       (click)="openChatModal()"
-      class="fixed bottom-4 right-4 bg-blue-500 text-white p-4 rounded-full shadow-lg"
+      class="fixed bottom-4 right-4 bg-indigo-500 text-white p-4 rounded-full shadow-lg"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +54,11 @@ export class ChatComponent {
 
     const portal = new ComponentPortal(ChatModalComponent);
     const componentRef = this.overlayRef.attach(portal);
+
+    componentRef.instance.close.subscribe(() => {
+      this.overlayRef?.dispose();
+      this.overlayRef = null;
+    });
 
     this.overlayRef.backdropClick().subscribe(() => {
       this.overlayRef?.dispose();

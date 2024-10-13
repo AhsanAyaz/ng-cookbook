@@ -30,7 +30,15 @@ export class MarkdownComponent {
   constructor(
     private sanitizer: DomSanitizer,
     private markdownService: MarkdownService
-  ) {}
+  ) {
+    this.markdownService.renderer.link = (
+      href: string,
+      title: string,
+      text: string
+    ) => {
+      return `<a href="${href}" target="_blank" class="text-indigo-600 underline hover:text-indigo-700" title="${title}">${text}</a>`;
+    };
+  }
 
   ngOnChanges() {
     this.sanitizedContent = this.sanitizeContent(
@@ -39,52 +47,20 @@ export class MarkdownComponent {
   }
 
   private processContent(content: string): string {
-    content = content.replace(/\\n\\n/g, '  \n'); // Replace \n with Markdown line break
-    content = content.replace(/(?!\s)\\n/g, '\n'); // Replace \n with Markdown line break
-    return this.preprocessCitations(
-      this.preprocessMedia(this.preprocessLaTeX(content))
-    );
-  }
-
-  private preprocessLaTeX(content: string): string {
-    // Replace block-level LaTeX delimiters \[ \] with $$ $$
-    const blockProcessedContent = content.replace(
-      /\\\[([\s\S]*?)\\\]/g,
-      (_, equation) => `$$${equation}$$`
-    );
-    // Replace inline LaTeX delimiters \( \) with $ $
-    return blockProcessedContent.replace(
-      /\\\(([\s\S]*?)\\\)/g,
-      (_, equation) => `$${equation}$`
-    );
-  }
-
-  private preprocessMedia(content: string): string {
-    // Remove `sandbox:` from the beginning of the URL
-    return content.replace(/(sandbox|attachment|snt):/g, '');
-  }
-
-  private preprocessCitations(content: string): string {
-    if (this.sources) {
-      const citationRegex = /\[citation:(.+?)\]\(\)/g;
-      let match;
-      while ((match = citationRegex.exec(content)) !== null) {
-        const citationId = match[1];
-        const sourceNode = this.sources.nodes.find(
-          (node) => node.id === citationId
-        );
-        if (sourceNode !== undefined) {
-          content = content.replace(
-            match[0],
-            `[citation:${this.sources.nodes.indexOf(sourceNode)}]()`
-          );
-        } else {
-          content = content.replace(match[0], '');
-        }
-      }
-    }
+    content = this.decodeUnicode(content);
+    content = content.normalize(); // Normalize Unicode characters
+    content = content.replace(/\\n\\n/g, '\n\n'); // Ensure double newlines are preserved for paragraph breaks
+    content = content.replace(/(?!\s)\\n/g, '  \n'); // Replace \n not followed by whitespace with Markdown line break
     return content;
   }
+
+  private decodeUnicode(content: string): string {
+    // Decodes Unicode escape sequences like \u201c into actual characters
+    return content.replace(/\\u[\dA-F]{4}/gi, (match) => {
+      return String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16));
+    });
+  }
+
   private sanitizeContent(content: string): SafeHtml {
     const parsedContent = this.markdownService.parse(content, {
       decodeHtml: true,
@@ -95,7 +71,9 @@ export class MarkdownComponent {
       },
     });
     if (typeof parsedContent === 'string') {
-      return this.sanitizer.bypassSecurityTrustHtml(parsedContent);
+      return this.sanitizer.bypassSecurityTrustHtml(
+        decodeURIComponent(parsedContent)
+      );
     } else {
       return parsedContent.then((result) =>
         this.sanitizer.bypassSecurityTrustHtml(result)
