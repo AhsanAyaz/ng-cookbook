@@ -20,7 +20,7 @@ import { ChatModalComponent } from './chat-modal.component';
       "
     >
       @if (showText()) {
-      <span class="uppercase">Chat with AI</span>
+      <span>Chat with AI</span>
       }
       <span class="bg-indigo-500 text-white p-2 rounded-full shadow-lg">
         <img src="assets/images/bot.png" alt="chat" class="w-6 h-6" />
