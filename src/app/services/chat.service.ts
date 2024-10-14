@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface Message {
   id: string;
@@ -18,8 +19,7 @@ interface StreamChunk {
   providedIn: 'root',
 })
 export class ChatService {
-  private apiUrl =
-    'https://ng-cookbook-assistant-production.up.railway.app/api/chat';
+  private apiUrl = environment.chatApiUrl;
   private messagesSubject = new BehaviorSubject<Message[]>([]);
   private streamingMessageSubject = new Subject<string>();
   private suggestedQuestionsSubject = new Subject<string[]>();
@@ -50,6 +50,13 @@ export class ChatService {
       });
 
       if (!response.ok) {
+        if (response.status === 429) {
+          this.addAssistantMessage(
+            'Too many requests. Please wait a while before asking more questions.'
+          );
+          this.streamingMessageSubject.next('ACTION: streaming_done');
+          return;
+        }
         throw new Error('Network response was not ok');
       }
 

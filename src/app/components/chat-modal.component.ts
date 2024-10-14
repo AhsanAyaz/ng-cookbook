@@ -68,8 +68,10 @@ import { MarkdownComponent } from './markdown/markdown.component';
           </button>
           } @if(!loading && !streamingMessage) {
           <button
+            [disabled]="loading || streamingMessage"
             (click)="regenerateResponse(message)"
             class="px-2 py-1 bg-gray-200 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white dark:bg-slate-800 rounded text-sm"
+            [ngClass]="{ 'col-span-2': suggestedQuestions.length === 0 }"
           >
             Regenerate
           </button>
@@ -213,8 +215,9 @@ import { MarkdownComponent } from './markdown/markdown.component';
             autofocus
           ></textarea>
           <button
+            [disabled]="loading || streamingMessage"
             type="submit"
-            class="absolute bottom-2 right-2.5 rounded-lg bg-indigo-700 px-4 py-2 text-sm font-medium text-slate-200 hover:bg-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800 sm:text-base"
+            class="disabled:opacity-50 disabled:cursor-not-allowed absolute bottom-2 right-2.5 rounded-lg bg-indigo-700 px-4 py-2 text-sm font-medium text-slate-200 hover:bg-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800 sm:text-base"
           >
             Send <span class="sr-only">Send message</span>
           </button>
@@ -291,7 +294,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
   }
 
   async sendMessage(content: string = this.userInput) {
-    if (content.trim() === '') return;
+    if (content.trim() === '' || this.loading || this.streamingMessage) return;
     this.loading = true;
     this.userInput = '';
     this.streamingMessage = '';
