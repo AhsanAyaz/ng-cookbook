@@ -1,0 +1,669 @@
+<!-- Start Navbar -->
+<!-- Start Navbar -->
+<nav id="topnav" class="defaultscroll is-sticky px-6">
+  <div class="container relative flex justify-end items-center">
+    <!-- Logo container-->
+    <a class="logo flex-1 text-xs" routerLink="/"> Angular Cookbook </a>
+    <!-- End Logo container-->
+
+    <!--Login button End-->
+
+    <!--Login button Start-->
+    <ul class="buy-button list-none mb-0 flex gap-4 items-center">
+      <li>
+        <app-chat [showText]="true"></app-chat>
+      </li>
+      <li class="inline ps-1 mb-0">
+        <a
+          href="https://amzn.to/4awwLgH"
+          target="_blank"
+          class="flex w-10 h-10 items-center justify-center gap-2 bg-indigo-500 text-white p-2 shadow-lg hover:bg-white hover:text-indigo-500 rounded-full duration-150 cursor-pointer"
+        >
+          <i-feather name="shopping-cart" class="size-4"></i-feather
+        ></a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E"
+          target="_blank"
+          class="flex items-center justify-center w-10 h-10 p-0! gap-2 bg-indigo-500 text-white shadow-lg hover:bg-white hover:text-indigo-500 rounded-full duration-150 cursor-pointer"
+        >
+          <i-feather name="github" class="size-4"></i-feather
+        ></a>
+      </li>
+    </ul>
+    <div class="menu-extras hidden">
+      <div class="menu-item">
+        <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+          <div class="lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!--end navigation-->
+  </div>
+  <!--end container-->
+</nav>
+<!--end header-->
+
+<!-- Start Home -->
+<section
+  id="jarallaxContainer"
+  class="relative flex h-[70vh] min-h-[70vh] md:h-screen md:min-h-screen py-44 items-center"
+>
+  <div
+    class="absolute md:block inset-0 w-full jarallax bg-cover bg-bottom md:h-screen"
+    data-jarallax
+    data-speed="0.7"
+    style="background-image: url('assets/images/ahsan-angular.jpg')"
+  ></div>
+  <div
+    data-jarallax
+    data-speed="1.6"
+    class="absolute inset-0 md:w-[400px] xl:w-[500px] 2xl:w-[600px] md:left-auto md:right-0 md:top-[30%] 2xl:left-16 2xl:top-28 object-contain md:block hidden jarallax-img"
+  >
+    <img
+      src="assets/images/hero-text-lg.png"
+      class="jarallax-img object-contain"
+    />
+  </div>
+  <div
+    data-jarallax
+    data-speed="1.6"
+    class="absolute inset-0 pt-32 h-max w-[200px] left-0 top-0 bottom-0 right-0 m-auto object-contain block md:hidden jarallax-img"
+  >
+    <img
+      class="jarallax-img object-contain"
+      src="assets/images/hero-text-sm.png"
+    />
+  </div>
+  <div
+    data-jarallax
+    data-keep-img="true"
+    data-speed="0.8"
+    class="hide-nested-image absolute inset-0 jarallax mx-auto right-0 bottom-0 top-auto object-contain md:pr-24"
+  >
+    <img
+      appBookHeight
+      class="jarallax-img object-contain object-center h-[40vh] w-full"
+      src="assets/images/ng-cookbook-black.jpg"
+    />
+  </div>
+  <div
+    class="absolute inset-0 bg-gradient-to-t to-transparent via-transparent from-slate-900 hidden dark:block"
+  ></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-t to-transparent via-transparent from-white dark:hidden block"
+  ></div>
+</section>
+<!--end section-->
+<!-- End Home -->
+
+<!-- Start Section-->
+<section class="relative md:py-24 py-16">
+  <div class="container mx-auto relative">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h3
+        class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold"
+      >
+        Angular Cookbook
+      </h3>
+
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        A modern, practical, and no-nonsense guide to Angular, Angular Cookbook
+        is packed with practical examples and real-world recipes to help you
+        build efficient, maintainable, and scalable Angular applications.
+      </p>
+    </div>
+    <!--end grid-->
+
+    <div
+      class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px] mx-auto"
+    >
+      <div class="relative overflow-hidden h-fit">
+        <img
+          src="assets/images/screencasts/cdk-drag-drop.gif"
+          class="rounded-md"
+          alt=""
+        />
+        <div
+          class="absolute inset-0 h-full w-full bg-gradient-to-t to-transparent via-white/80 dark:via-slate-900/80 from-white dark:from-slate-900"
+        ></div>
+
+        <div class="absolute text-center p-6 bottom-0 start-0 end-0">
+          <a
+            href="https://packtpublishing.github.io/Angular-Cookbook-2E/chapter09/ng-cdk-drag-drop/final/"
+            class="font-semibold text-lg"
+            target="_blank"
+            >Angular CDK Drag & Drop <i class="uil uil-arrow-up-right"></i
+          ></a>
+        </div>
+      </div>
+      <!--end content-->
+
+      <div class="relative overflow-hidden h-fit lg:mt-16">
+        <img
+          src="assets/images/screencasts/cdk-stepper.webp"
+          class="rounded-md"
+          alt=""
+        />
+        <div
+          class="absolute inset-0 h-full w-full bg-gradient-to-t to-transparent via-white/80 dark:via-slate-900/80 from-white dark:from-slate-900"
+        ></div>
+
+        <div class="absolute text-center p-6 bottom-0 start-0 end-0">
+          <a
+            href="https://packtpublishing.github.io/Angular-Cookbook-2E/chapter09/ng-cdk-stepper/final/index.html"
+            class="font-semibold text-lg"
+            target="_blank"
+            >Angular CDK Stepper <i class="uil uil-arrow-up-right"></i
+          ></a>
+        </div>
+      </div>
+      <!--end content-->
+
+      <div class="relative overflow-hidden h-fit">
+        <img
+          src="assets/images/screencasts/route-animations.gif"
+          class="rounded-md"
+          alt=""
+        />
+        <div
+          class="absolute inset-0 h-full w-full bg-gradient-to-t to-transparent via-white/80 dark:via-slate-900/80 from-white dark:from-slate-900"
+        ></div>
+
+        <div class="absolute text-center p-6 bottom-0 start-0 end-0">
+          <a
+            href="https://packtpublishing.github.io/Angular-Cookbook-2E/chapter04/ng-route-animations/final/"
+            class="font-semibold text-lg"
+            target="_blank"
+            >Angular Route Animations <i class="uil uil-arrow-up-right"></i
+          ></a>
+        </div>
+      </div>
+      <!--end content-->
+
+      <div class="relative overflow-hidden h-fit lg:mt-16">
+        <img
+          src="assets/images/screencasts/multi-observable.webp"
+          class="rounded-md"
+          alt=""
+        />
+        <div
+          class="absolute inset-0 h-full w-full bg-gradient-to-t to-transparent via-white/80 dark:via-slate-900/80 from-white dark:from-slate-900"
+        ></div>
+
+        <div class="absolute text-center p-6 bottom-0 start-0 end-0">
+          <a
+            href="https://packtpublishing.github.io/Angular-Cookbook-2E/chapter05/rx-multiple-streams/final/"
+            class="font-semibold text-lg"
+            target="_blank"
+            >RxJS Multi Observable Streams<i class="uil uil-arrow-up-right"></i
+          ></a>
+        </div>
+      </div>
+      <!--end content-->
+    </div>
+    <!--end grid-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+
+<!-- Start -->
+<section
+  class="relative md:py-56 py-44 bg-[url('assets/images/big-banner-ahsan.jpg')] bg-cover jarallax"
+  data-jarallax
+  data-speed="0.5"
+  id="aboutme"
+>
+  <div
+    class="absolute inset-0 h-full w-full bg-gradient-to-t to-transparent via-white/80 dark:via-slate-900/80 from-white dark:from-slate-900"
+  ></div>
+
+  <div class="absolute text-center p-6 bottom-0 start-0 end-0">
+    <h3
+      class="md:text-3xl md:leading-normal text-2xl leading-normal font-semibold"
+    >
+      Muhammad Ahsan Ayaz
+    </h3>
+  </div>
+</section>
+<!--end section-->
+
+<section class="relative pt-8 md:pb-24 py-16">
+  <div class="container mx-auto relative">
+    <div class="flex justify-center">
+      <div class="lg:max-w-[768px] w-full text-center">
+        <p>
+          Muhammad Ahsan Ayaz is a Software Architect and a Full-Stack developer
+          with over 10 years of experience in the industry. He is a Google
+          Developer Expert. He is also a published author and a speaker. He is
+          the author of the Angular Cookbook and a lot of open-sourced libraries
+          and projects
+        </p>
+
+        <div class="mt-6 text-center">
+          <a
+            href="https://codewithahsan.dev/about"
+            target="_blank"
+            class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-slate-400 dark:text-white/70 dark:hover:text-white hover:text-indigo-600 after:bg-indigo-600 dark:after:bg-white duration-500 ease-in-out"
+            >Read More <i class="uil uil-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+    <!--end flex-->
+  </div>
+  <!--end container-->
+
+  <div class="container mx-auto relative md:mt-24 mt-16">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h3
+        class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold"
+      >
+        Chapters / Content
+      </h3>
+
+      <p class="text-slate-400 max-w-2xl mx-auto">
+        The Angular Cookbook was created so that you can learn Angular faster
+        and won't stuck into different topics as I did. It contains the
+        following chapters
+      </p>
+    </div>
+    <!--end grid-->
+
+    <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px] mt-8">
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter01"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather
+              name="message-circle"
+              class="size-5 rotate-45"
+            ></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">
+              Winning Component Communication
+            </h4>
+          </div>
+        </a>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter02"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="git-branch" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">
+              Angular Directives & Built-in Control Flow
+            </h4>
+          </div>
+        </a>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter03"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="layers" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">
+              The Magic of Dependency Injection
+            </h4>
+          </div>
+        </a>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter04"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="play" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">
+              Understanding Angular Animations
+            </h4>
+          </div>
+        </a>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter05"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="list" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">
+              Reactive State Management with NgRx
+            </h4>
+          </div>
+        </a>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter06"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="refresh-ccw" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">
+              Reactive State Management with NgRx
+            </h4>
+          </div>
+        </a>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter07"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="arrow-right" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">
+              Angular Navigation & Routing
+            </h4>
+          </div>
+        </a>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter08"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="file-text" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Mastering Angular Forms</h4>
+          </div>
+        </a>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter09"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="monitor" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Angular & Angular CDK</h4>
+          </div>
+        </a>
+      </div>
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter10"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="feather" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Unit Testing with Jest</h4>
+          </div>
+        </a>
+      </div>
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter11"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="shield" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">E2E Testing with Cypress</h4>
+          </div>
+        </a>
+      </div>
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter12"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="zap" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">
+              Performance Optimization in Angular
+            </h4>
+          </div>
+        </a>
+      </div>
+      <div class="lg:col-span-4 md:col-span-6">
+        <a
+          href="https://github.com/PacktPublishing/Angular-Cookbook-2E/tree/main/start/apps/chapter13"
+          target="_blank"
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="send" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Building PWAs with Angular</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!--end grid-->
+
+    <div class="grid grid-cols-1 mt-8">
+      <div class="text-center">
+        <a
+          href="https://amzn.to/4awwLgH"
+          target="_blank"
+          class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-slate-400 dark:text-white/70 dark:hover:text-white hover:text-indigo-600 after:bg-indigo-600 dark:after:bg-white duration-500 ease-in-out"
+          >Get the Book <i class="uil uil-arrow-right"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- End -->
+
+<!-- Footer Start -->
+<footer
+  class="footer relative text-gray-400 dark:text-gray-400"
+  style="background: url('assets/images/photography/footer.jpg') top left"
+>
+  <div
+    class="absolute inset-0 bg-gradient-to-r to-transparent via-white dark:via-slate-900 from-white dark:from-slate-900"
+  ></div>
+  <div class="container mx-auto relative">
+    <div class="grid grid-cols-12">
+      <div class="col-span-12">
+        <div class="py-[60px] px-0">
+          <div class="grid grid-cols-1 text-center">
+            <div>
+              <a
+                href="mailto:support@codewithahsan.dev"
+                class="relative inline-block font-semibold tracking-wide align-middle text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-2xl text-slate-900 dark:text-white dark:hover:text-white hover:text-indigo-600 after:bg-indigo-600 dark:after:bg-white duration-500 ease-in-out"
+                >support&commat;codewithahsan.dev</a
+              >
+            </div>
+            <p class="mt-6 max-w-2xl mx-auto">
+              As a Software Architect & a Google Developers Expert in Angular, I
+              am here to make you stand out in the world of Angular. My passion
+              for mentoring and your vision will ensure a great end result.
+            </p>
+            <ul class="list-none mt-6 flex gap-4 items-center justify-center">
+              <li class="inline">
+                <a
+                  href="https://amzn.to/4awwLgH"
+                  target="_blank"
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                  ><i
+                    class="uil uil-shopping-cart align-middle"
+                    title="Buy Now"
+                  ></i
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href="https://codewithahsan.dev"
+                  target="_blank"
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                  ><i class="uil uil-dribbble align-middle" title="blog"></i
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href="http://linkedin.com/in/ahsanayaz"
+                  target="_blank"
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                  ><i class="uil uil-linkedin" title="Linkedin"></i
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href="https://www.facebook.com/codewithahsan"
+                  target="_blank"
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                  ><i
+                    class="uil uil-facebook-f align-middle"
+                    title="facebook"
+                  ></i
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href="https://www.instagram.com/code.with.ahsan/"
+                  target="_blank"
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                  ><i
+                    class="uil uil-instagram align-middle"
+                    title="instagram"
+                  ></i
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href="https://twitter.com/codewith_ahsan"
+                  target="_blank"
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                  ><i class="uil uil-twitter align-middle" title="twitter"></i
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href="mailto:support@codewithahsan.dev"
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center text-gray-400 hover:text-white border border-gray-100 dark:border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                  ><i class="uil uil-envelope align-middle" title="email"></i
+                ></a>
+              </li>
+            </ul>
+            <!--end icon-->
+          </div>
+          <!--end grid-->
+        </div>
+        <!--end col-->
+      </div>
+    </div>
+    <!--end grid-->
+  </div>
+  <!--end container-->
+
+  <!--end footer-->
+  <!-- Footer End -->
+
+  <!-- Back to top -->
+  <!-- <a
+    href="#"
+    onclick="topFunction()"
+    id="back-to-top"
+    class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-indigo-600 text-white leading-9"
+    ><i class="uil uil-arrow-up"></i
+  ></a> -->
+  <!-- Back to top -->
+
+  <!-- Switcher -->
+  <!-- <div class="fixed top-[30%] -right-2 z-50">
+  <span class="relative inline-block rotate-90">
+    <input type="checkbox" class="checkbox opacity-0 absolute" id="chk" />
+    <label
+      class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-800 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8"
+      for="chk"
+    >
+      <i class="uil uil-moon text-[20px] text-yellow-500"></i>
+      <i class="uil uil-sun text-[20px] text-yellow-500"></i>
+      <span
+        class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] size-7"
+      ></span>
+    </label>
+  </span>
+</div> -->
+  <span appBehaviors>&nbsp;</span>
+  <div class="fixed bottom-10 right-10 z-50">
+    <app-chat></app-chat>
+  </div>
+</footer>

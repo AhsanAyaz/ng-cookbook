@@ -9,6 +9,7 @@ import {
   withHashLocation,
 } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideMarkdown } from 'ngx-markdown';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -19,6 +20,81 @@ import {
   provideAnalytics,
   ScreenTrackingService,
 } from '@angular/fire/analytics';
+import { FeatherModule } from 'angular-feather';
+import {
+  Camera,
+  Heart,
+  Github,
+  X,
+  User,
+  Mail,
+  Book,
+  PieChart,
+  Briefcase,
+  Target,
+  Monitor,
+  Eye,
+  Layout,
+  Feather,
+  Code,
+  UserCheck,
+  Globe,
+  Settings,
+  Facebook,
+  Instagram,
+  Linkedin,
+  ArrowUp,
+  ShoppingCart,
+  MessageCircle,
+  FileText,
+  Zap,
+  Shield,
+  Pocket,
+  Send,
+  ArrowRight,
+  RefreshCcw,
+  List,
+  Play,
+  Layers,
+  GitBranch,
+} from 'angular-feather/icons';
+
+const icons = {
+  ArrowUp,
+  X,
+  User,
+  Mail,
+  Book,
+  MessageCircle,
+  PieChart,
+  Briefcase,
+  Target,
+  Monitor,
+  Heart,
+  Eye,
+  Layout,
+  Feather,
+  Code,
+  UserCheck,
+  Globe,
+  Settings,
+  Facebook,
+  Instagram,
+  Linkedin,
+  ShoppingCart,
+  FileText,
+  Zap,
+  Shield,
+  Pocket,
+  Send,
+  ArrowRight,
+  RefreshCcw,
+  List,
+  Play,
+  Layers,
+  GitBranch,
+  Github,
+};
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,20 +105,21 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    importProvidersFrom(
-      provideFirebaseApp(() =>
-        initializeApp({
-          projectId: 'ng-cookbook-4d102',
-          appId: '1:1038411915746:web:202192e0e2a689e86419bb',
-          storageBucket: 'ng-cookbook-4d102.appspot.com',
-          apiKey: 'AIzaSyDkwAMJ4ZBGY0AWQsvWy1p8wtCmLjfeu4I',
-          authDomain: 'ng-cookbook-4d102.firebaseapp.com',
-          messagingSenderId: '1038411915746',
-          measurementId: 'G-Z1P15PWEJQ',
-        })
-      )
+    provideFirebaseApp(() =>
+      initializeApp({
+        projectId: 'ng-cookbook-4d102',
+        appId: '1:1038411915746:web:202192e0e2a689e86419bb',
+        storageBucket: 'ng-cookbook-4d102.appspot.com',
+        apiKey: 'AIzaSyDkwAMJ4ZBGY0AWQsvWy1p8wtCmLjfeu4I',
+        authDomain: 'ng-cookbook-4d102.firebaseapp.com',
+        messagingSenderId: '1038411915746',
+        measurementId: 'G-Z1P15PWEJQ',
+      })
     ),
-    importProvidersFrom(provideAnalytics(() => getAnalytics())),
+    provideMarkdown(),
+    provideAnalytics(() => getAnalytics()),
     ScreenTrackingService,
+    importProvidersFrom(FeatherModule.pick(icons)),
+    provideHttpClient(withFetch()),
   ],
 };

@@ -1,0 +1,60 @@
+/*********************************/
+/*             Helper            */
+/*===============================*/
+
+/* Switcher */
+.label {
+  .ball {
+    transition: transform 0.2s linear;
+    @apply translate-x-0;
+  }
+}
+
+.checkbox:checked + .label .ball {
+  @apply translate-x-6;
+}
+
+/****************/
+/*  simplebar   */
+/****************/
+.simplebar-track {
+  &.simplebar-vertical {
+    @apply w-2 #{!important};
+    .simplebar-scrollbar {
+      @apply before:w-1 before:bg-slate-400 dark:before:bg-slate-700 #{!important};
+    }
+  }
+}
+
+/**************************/
+/*  Chat Message typing   */
+/**************************/
+.animate-typing .dot {
+  animation: wave 1.3s linear infinite;
+}
+
+.animate-typing .dot:nth-child(2) {
+  animation-delay: -1.1s;
+}
+
+.animate-typing .dot:nth-child(3) {
+  animation-delay: -0.9s;
+}
+
+@keyframes wave {
+  0%,
+  100%,
+  60% {
+    -webkit-transform: initial;
+    transform: initial;
+  }
+
+  30% {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
+
+.hide-nested-image .jarallax-container img {
+  visibility: hidden;
+}

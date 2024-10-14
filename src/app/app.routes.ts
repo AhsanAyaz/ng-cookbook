@@ -5,7 +5,9 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadComponent: () =>
-      import('./home/home.component').then((m) => m.HomeComponent),
+      import('./home-wrapper/home-wrapper.component').then(
+        (m) => m.HomeWrapperComponent
+      ),
   },
   {
     path: 'thank-you',

@@ -1,0 +1,1809 @@
+<div id="preloader">
+  <div id="status">
+    <div class="spinner">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
+  </div>
+</div>
+<!-- Loader End -->
+
+<!-- Start Navbar -->
+<nav id="topnav" class="defaultscroll is-sticky px-6">
+  <div class="container relative flex justify-between items-center">
+    <!-- Logo container-->
+    <a class="logo" routerLink="/"> Angular Cookbook </a>
+    <!-- End Logo container-->
+
+    <!--Login button End-->
+
+    <div id="navigation">
+      <!-- Navigation Menu-->
+      <ul class="navigation-menu justify-end" id="navmenu-nav">
+        <li class="has-submenu">
+          <a href="#home" class="sub-menu-item">Home</a>
+        </li>
+        <li class="has-submenu">
+          <a href="#features" class="sub-menu-item">Feature</a>
+        </li>
+        <li class="has-submenu">
+          <a href="#pricing" class="sub-menu-item">Price</a>
+        </li>
+        <li class="has-submenu">
+          <a href="#team" class="sub-menu-item">Team</a>
+        </li>
+        <li class="has-submenu">
+          <a href="#review" class="sub-menu-item">Review</a>
+        </li>
+        <li class="has-submenu">
+          <a href="#blog" class="sub-menu-item">Blog</a>
+        </li>
+        <li class="has-submenu" onclick="ContactUs.showModal()">
+          <a href="javascript:void(0)" class="sub-menu-item">Contact</a>
+        </li>
+      </ul>
+      <!--end navigation menu-->
+    </div>
+    <!--Login button Start-->
+    <ul class="buy-button list-none mb-0">
+      <li class="inline ps-1 mb-0">
+        <a
+          href="https://amzn.to/4awwLgH"
+          target="_blank"
+          class="size-9 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full bg-indigo-600 hover:bg-indigo-700 border border-indigo-600 hover:border-indigo-700 text-white"
+          ><i-feather name="shopping-cart" class="size-4"></i-feather
+        ></a>
+      </li>
+    </ul>
+    <div class="menu-extras">
+      <div class="menu-item">
+        <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+          <div class="lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!--end navigation-->
+  </div>
+  <!--end container-->
+</nav>
+<!--end header-->
+<!-- End Navbar -->
+
+<!-- Start Modal -->
+<dialog
+  id="ContactUs"
+  class="rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
+>
+  <div class="relative h-auto md:w-[480px] w-300px">
+    <div
+      class="flex justify-between items-center px-6 py-4 border-b border-gray-100 dark:border-gray-700"
+    >
+      <h3 class="font-bold text-lg">Contact Us</h3>
+      <form method="dialog">
+        <button
+          class="size-6 flex justify-center items-center shadow dark:shadow-gray-800 rounded-md btn-ghost"
+        >
+          <i-feather name="x" class="size-4"></i-feather>
+        </button>
+      </form>
+    </div>
+    <div class="p-6 text-center">
+      <form
+        method="post"
+        name="myForm"
+        id="myForm"
+        onsubmit="return validateForm()"
+      >
+        <p class="mb-0" id="error-msg"></p>
+        <div id="simple-msg"></div>
+        <div class="grid lg:grid-cols-12 lg:gap-6">
+          <div class="lg:col-span-6 mb-5">
+            <div class="text-start">
+              <label for="name" class="font-semibold">Your Name:</label>
+              <div class="form-icon relative mt-2">
+                <i
+                  data-feather="user"
+                  class="size-4 absolute top-3 start-4"
+                ></i>
+                <input
+                  name="name"
+                  id="name"
+                  type="text"
+                  class="form-input ps-11 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
+                  placeholder="Name :"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 mb-5">
+            <div class="text-start">
+              <label for="email" class="font-semibold">Your Email:</label>
+              <div class="form-icon relative mt-2">
+                <i
+                  data-feather="mail"
+                  class="size-4 absolute top-3 start-4"
+                ></i>
+                <input
+                  name="email"
+                  id="email"
+                  type="email"
+                  class="form-input ps-11 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
+                  placeholder="Email :"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1">
+          <div class="mb-5">
+            <div class="text-start">
+              <label for="subject" class="font-semibold">Your Question:</label>
+              <div class="form-icon relative mt-2">
+                <i
+                  data-feather="book"
+                  class="size-4 absolute top-3 start-4"
+                ></i>
+                <input
+                  name="subject"
+                  id="subject"
+                  class="form-input ps-11 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
+                  placeholder="Subject :"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-5">
+            <div class="text-start">
+              <label for="comments" class="font-semibold">Your Comment:</label>
+              <div class="form-icon relative mt-2">
+                <i
+                  data-feather="message-circle"
+                  class="size-4 absolute top-3 start-4"
+                ></i>
+                <textarea
+                  name="comments"
+                  id="comments"
+                  class="form-input ps-11 w-full py-2 px-3 h-28 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0"
+                  placeholder="Message :"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          type="submit"
+          id="submit"
+          name="send"
+          class="py-2 px-5 font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md justify-center flex items-center"
+        >
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</dialog>
+<!-- End Modal -->
+
+<!-- Start Hero -->
+<section
+  class="relative overflow-hidden py-40 lg:h-screen flex justify-center items-center bg-indigo-600/10"
+  id="home"
+>
+  <div class="container relative">
+    <div
+      class="grid lg:grid-cols-12 md:grid-cols-2 gap-[30px] mt-10 items-center"
+    >
+      <div class="lg:col-span-7">
+        <div class="md:text-start text-center">
+          <h1
+            class="font-bold lg:leading-normal leading-normal text-4xl lg:text-5xl mb-6"
+          >
+            Resources for <span class="text-indigo-600">makers &</span> <br />
+            <span class="text-indigo-600">Creative</span> to learn & grow
+          </h1>
+          <p class="text-slate-400 text-lg max-w-xl">
+            Launch your campaign and benefit from our expertise on designing and
+            managing conversion centered Tailwind CSS v3.x html page.
+          </p>
+
+          <div class="subcribe-form mt-6 mb-3">
+            <form class="relative max-w-lg">
+              <input
+                type="email"
+                id="subcribe"
+                name="email"
+                class="py-4 pe-40 ps-6 w-full h-[50px] outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow dark:shadow-gray-800"
+                placeholder="Your Email Address :"
+              />
+              <button
+                type="submit"
+                class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center absolute top-[2px] end-[3px] h-[46px] bg-indigo-600 hover:bg-indigo-700 border border-indigo-600 hover:border-indigo-700 text-white rounded-full"
+              >
+                Try it for free <i class="uil uil-arrow-right"></i>
+              </button>
+            </form>
+            <!--end form-->
+          </div>
+
+          <span class="text-slate-400 font-medium"
+            >Looking for help?
+            <a href="" class="text-indigo-600">Get in touch with us</a></span
+          >
+        </div>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="relative">
+          <div class="relative max-w-fit">
+            <img
+              src="assets/images/ahsan-angular.jpg"
+              class="lg:w-[400px] lg:h-[550px] w-[280px] object-cover rounded-lg shadow dark:shadow-gray-800"
+              alt=""
+            />
+            <div
+              class="absolute right-[-42px] top-0 translate-y-2/4 end-0 text-center"
+            >
+              <a
+                href="#!"
+                data-type="youtube"
+                data-id="S_CGed6E610"
+                class="lightbox size-20 rounded-full shadow-lg dark:shadow-gray-800 inline-flex items-center justify-center bg-white dark:bg-slate-900 text-indigo-600 dark:text-white"
+              >
+                <i
+                  class="mdi mdi-play inline-flex items-center justify-center text-2xl"
+                ></i>
+              </a>
+            </div>
+          </div>
+          <div class="absolute -end-5 -bottom-16">
+            <img
+              src="assets/images/ng-cookbook-black.jpg"
+              class="lg:w-[280px] w-[200px] border-8 border-white dark:border-slate-900 rounded-lg shadow dark:shadow-gray-800"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end Container-->
+</section>
+<!--end section-->
+<!-- End Hero -->
+
+<!-- Business Partner -->
+<section class="py-6 border-t border-b border-gray-100 dark:border-gray-700">
+  <div class="container relative">
+    <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
+      <div class="mx-auto py-4">
+        <img src="assets/images/client/amazon.svg" class="h-6" alt="" />
+      </div>
+
+      <div class="mx-auto py-4">
+        <img src="assets/images/client/google.svg" class="h-6" alt="" />
+      </div>
+
+      <div class="mx-auto py-4">
+        <img src="assets/images/client/lenovo.svg" class="h-6" alt="" />
+      </div>
+
+      <div class="mx-auto py-4">
+        <img src="assets/images/client/paypal.svg" class="h-6" alt="" />
+      </div>
+
+      <div class="mx-auto py-4">
+        <img src="assets/images/client/shopify.svg" class="h-6" alt="" />
+      </div>
+
+      <div class="mx-auto py-4">
+        <img src="assets/images/client/spotify.svg" class="h-6" alt="" />
+      </div>
+    </div>
+    <!--end grid-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- Business Partner -->
+
+<!-- Start Section-->
+<section class="relative md:py-24 py-16" id="features">
+  <div class="container relative">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h6 class="text-indigo-600 text-sm font-bold uppercase mb-2">Features</h6>
+      <h3
+        class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold"
+      >
+        Business strategies and top <br />
+        permormance ideas
+      </h3>
+
+      <p class="text-slate-400 max-w-xl mx-auto">
+        Start working with Tailwind CSS that can provide everything you need to
+        generate awareness, drive traffic, connect.
+      </p>
+    </div>
+    <!--end grid-->
+
+    <div class="grid md:grid-cols-3 grid-cols-1 mt-8 gap-[30px]">
+      <div class="group text-center">
+        <div
+          class="size-20 bg-indigo-600/5 text-indigo-600 rounded-lg ltr:rotate-[15deg] rtl:-rotate-[15deg] flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 mx-auto"
+        >
+          <i
+            data-feather="pie-chart"
+            class="size-7 ltr:-rotate-[15deg] rtl:rotate-[15deg]"
+          ></i>
+        </div>
+
+        <div class="mt-8">
+          <a
+            href="page-services.html"
+            class="title h5 text-lg font-medium hover:text-indigo-600"
+            >Profitable Marketing</a
+          >
+
+          <p class="text-slate-400 mt-4">
+            We develop digital strategies, products and services appreciated by
+            clients.
+          </p>
+
+          <div class="mt-4">
+            <a
+              href=""
+              class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
+              >Read More <i class="uil uil-arrow-right align-middle"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- Feature End -->
+
+      <div class="group text-center">
+        <div
+          class="size-20 bg-indigo-600/5 text-indigo-600 rounded-lg ltr:rotate-[15deg] rtl:-rotate-[15deg] flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 mx-auto"
+        >
+          <i
+            data-feather="briefcase"
+            class="size-7 ltr:-rotate-[15deg] rtl:rotate-[15deg]"
+          ></i>
+        </div>
+
+        <div class="mt-8">
+          <a
+            href="page-services.html"
+            class="title h5 text-lg font-medium hover:text-indigo-600"
+            >SEO Specialists</a
+          >
+
+          <p class="text-slate-400 mt-4">
+            We develop digital strategies, products and services appreciated by
+            clients.
+          </p>
+
+          <div class="mt-4">
+            <a
+              href=""
+              class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
+              >Read More <i class="uil uil-arrow-right align-middle"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- Feature End -->
+
+      <div class="group text-center">
+        <div
+          class="size-20 bg-indigo-600/5 text-indigo-600 rounded-lg ltr:rotate-[15deg] rtl:-rotate-[15deg] flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 mx-auto"
+        >
+          <i
+            data-feather="target"
+            class="size-7 ltr:-rotate-[15deg] rtl:rotate-[15deg]"
+          ></i>
+        </div>
+
+        <div class="mt-8">
+          <a
+            href="page-services.html"
+            class="title h5 text-lg font-medium hover:text-indigo-600"
+            >Audience Analysis</a
+          >
+
+          <p class="text-slate-400 mt-4">
+            We develop digital strategies, products and services appreciated by
+            clients.
+          </p>
+
+          <div class="mt-4">
+            <a
+              href=""
+              class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
+              >Read More <i class="uil uil-arrow-right align-middle"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+      <!-- Feature End -->
+    </div>
+  </div>
+  <!--end container-->
+
+  <div class="container relative md:mt-24 mt-16">
+    <div class="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
+      <div class="md:col-span-5">
+        <div class="relative">
+          <img src="assets/images/company/about2.png" class="mx-auto" alt="" />
+          <div
+            class="absolute bottom-2/4 translate-y-2/4 start-0 end-0 text-center"
+          >
+            <a
+              href="#!"
+              data-type="youtube"
+              data-id="S_CGed6E610"
+              class="lightbox size-20 rounded-full shadow-lg dark:shadow-gray-800 inline-flex items-center justify-center bg-white dark:bg-slate-900 text-indigo-600 dark:text-white"
+            >
+              <i
+                class="mdi mdi-play inline-flex items-center justify-center text-2xl"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="md:col-span-7">
+        <div class="lg:ms-4">
+          <h4
+            class="mb-6 md:text-3xl text-2xl lg:leading-normal leading-normal font-medium"
+          >
+            We are the largest <br />
+            Business expert
+          </h4>
+          <p class="text-slate-400 max-w-xl">
+            Start working with Tailwind CSS that can provide everything you need
+            to generate awareness, drive traffic, connect. Dummy text is text
+            that is used in the publishing industry or by web designers to
+            occupy the space which will later be filled with 'real' content.
+            This is required when, for example, the final text is not yet
+            available. Dummy texts have been in use by typesetters since the
+            16th century.
+          </p>
+          <a
+            href=""
+            class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md mt-3"
+            >Buy Now <i class="mdi mdi-chevron-right align-middle"></i
+          ></a>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end grid-->
+  </div>
+  <!--end container-->
+
+  <div class="container relative md:mt-24 mt-16">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h3
+        class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold"
+      >
+        Key Features
+      </h3>
+
+      <p class="text-slate-400 max-w-xl mx-auto">
+        Start working with Tailwind CSS that can provide everything you need to
+        generate awareness, drive traffic, connect.
+      </p>
+    </div>
+    <!--end grid-->
+
+    <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px] mt-8">
+      <div class="lg:col-span-4 md:col-span-6">
+        <div
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="monitor" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Fully Responsive</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <div
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="heart" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Browser Compatibility</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <div
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="eye" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Retina Ready</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <div
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="layout" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Based On Tailwindcss 3</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <div
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="feather" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Feather Icons</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <div
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="code" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Built With SASS</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <div
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="user-check" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">W3c Valid Code</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <div
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="globe" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Browsers Compatible</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6">
+        <div
+          class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-3 rounded-md bg-white dark:bg-slate-900"
+        >
+          <div
+            class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full me-3"
+          >
+            <i-feather name="settings" class="size-5 rotate-45"></i-feather>
+          </div>
+          <div class="flex-1">
+            <h4 class="mb-0 text-lg font-medium">Easy to customize</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end grid-->
+
+    <div class="grid grid-cols-1 justify-center">
+      <div class="mt-6 text-center">
+        <a
+          href=""
+          class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-indigo-600 hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
+          >See More <i class="uil uil-angle-right-b align-middle"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+  <!--end contanier-->
+</section>
+<!--end section-->
+<!-- End Section-->
+
+<!-- Start -->
+<section class="relative md:py-24 py-16 md:pt-0 pt-0">
+  <div class="container relative">
+    <div class="grid grid-cols-1 justify-center">
+      <div class="relative z-1">
+        <div
+          class="grid lg:grid-cols-12 grid-cols-1 md:text-start text-center justify-center"
+        >
+          <div class="lg:col-start-2 lg:col-span-10">
+            <div class="relative">
+              <img
+                src="assets/images/cta-bg.jpg"
+                class="rounded-md shadow-lg"
+                alt=""
+              />
+              <div
+                class="absolute bottom-2/4 translate-y-2/4 start-0 end-0 text-center"
+              >
+                <a
+                  href="#!"
+                  data-type="youtube"
+                  data-id="S_CGed6E610"
+                  class="lightbox size-20 rounded-full shadow-lg dark:shadow-gray-800 inline-flex items-center justify-center bg-white dark:bg-slate-900 text-indigo-600 dark:text-white"
+                >
+                  <i
+                    class="mdi mdi-play inline-flex items-center justify-center text-2xl"
+                  ></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="content md:mt-8">
+          <div
+            class="grid lg:grid-cols-12 grid-cols-1 md:text-start text-center justify-center"
+          >
+            <div class="lg:col-start-2 lg:col-span-10">
+              <div class="grid md:grid-cols-2 grid-cols-1 items-center">
+                <div class="mt-8">
+                  <div class="section-title text-md-start">
+                    <h6 class="text-white/50 text-lg font-semibold">Team</h6>
+                    <h3
+                      class="md:text-3xl text-2xl md:leading-normal leading-normal font-semibold text-white mt-2"
+                    >
+                      Meet Experience <br />
+                      Team Member
+                    </h3>
+                  </div>
+                </div>
+
+                <div class="mt-8">
+                  <div class="section-title text-md-start">
+                    <p class="text-white/50 max-w-xl mx-auto mb-2">
+                      Start working with Techwind that can provide everything
+                      you need to generate awareness, drive traffic, connect.
+                    </p>
+                    <a href="" class="text-white"
+                      >Read More
+                      <i class="uil uil-angle-right-b align-middle"></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end row -->
+  </div>
+  <!--end container-->
+
+  <div
+    class="absolute bottom-0 start-0 end-0 sm:h-2/3 h-4/5 bg-gradient-to-b from-indigo-500 to-indigo-600"
+  ></div>
+</section>
+<!--end section-->
+<!-- End -->
+
+<!-- Start -->
+<section class="relative md:py-24 py-16" id="pricing">
+  <div class="container relative">
+    <div class="grid lg:grid-cols-12 grid-cols-1 items-center gap-[30px]">
+      <div class="lg:col-span-5">
+        <div class="lg:text-start text-center">
+          <h3
+            class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold"
+          >
+            Our Comfortable Rates
+          </h3>
+
+          <p class="text-slate-400 max-w-xl mx-auto">
+            Start working with Tailwind CSS that can provide everything you need
+            to generate awareness, drive traffic, connect.
+          </p>
+
+          <div class="mt-6">
+            <a
+              href="page-pricing.html"
+              class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md me-2 mt-2"
+              ><i class="uil uil-master-card"></i> Subscribe Now</a
+            >
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+
+      <div class="lg:col-span-7 mt-8 lg:mt-0">
+        <div class="lg:ms-8">
+          <div class="grid md:grid-cols-2 grid-cols-1 md:gap-0 gap-[30px]">
+            <div
+              class="group border-b-[3px] dark:border-gray-700 relative shadow dark:shadow-gray-800 rounded-md md:scale-110 z-3 bg-white dark:bg-slate-900"
+            >
+              <div class="p-6 py-8">
+                <h6 class="font-bold uppercase mb-5 text-indigo-600">
+                  Starter
+                </h6>
+
+                <div class="flex mb-5">
+                  <span class="text-xl font-semibold">$</span>
+                  <span class="price text-4xl font-semibold mb-0">39</span>
+                  <span class="text-xl font-semibold self-end mb-1">/mo</span>
+                </div>
+
+                <ul class="list-none text-slate-400">
+                  <li class="mb-1 flex">
+                    <i
+                      class="uil uil-check-circle text-indigo-600 text-xl me-2"
+                    ></i>
+                    Full Access
+                  </li>
+                  <li class="mb-1 flex">
+                    <i
+                      class="uil uil-check-circle text-indigo-600 text-xl me-2"
+                    ></i>
+                    Source Files
+                  </li>
+                  <li class="mb-1 flex">
+                    <i
+                      class="uil uil-check-circle text-indigo-600 text-xl me-2"
+                    ></i>
+                    Free Appointments
+                  </li>
+                  <li class="mb-1 flex">
+                    <i
+                      class="uil uil-check-circle text-indigo-600 text-xl me-2"
+                    ></i>
+                    Enhanced Security
+                  </li>
+                </ul>
+                <a
+                  href=""
+                  class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md mt-5"
+                  >Get Started</a
+                >
+              </div>
+            </div>
+
+            <div
+              class="group border-b-[3px] dark:border-gray-700 relative shadow dark:shadow-gray-800 rounded-md z-2 bg-gray-50 dark:bg-slate-800"
+            >
+              <div class="p-6 py-8 md:ps-10">
+                <h6 class="font-bold uppercase mb-5 text-indigo-600">
+                  Professional
+                </h6>
+
+                <div class="flex mb-5">
+                  <span class="text-xl font-semibold">$</span>
+                  <span class="price text-4xl font-semibold mb-0">59</span>
+                  <span class="text-xl font-semibold self-end mb-1">/mo</span>
+                </div>
+
+                <ul class="list-none text-slate-400">
+                  <li class="mb-1 flex">
+                    <i
+                      class="uil uil-check-circle text-indigo-600 text-xl me-2"
+                    ></i>
+                    Full Access
+                  </li>
+                  <li class="mb-1 flex">
+                    <i
+                      class="uil uil-check-circle text-indigo-600 text-xl me-2"
+                    ></i>
+                    Source Files
+                  </li>
+                  <li class="mb-1 flex">
+                    <i
+                      class="uil uil-check-circle text-indigo-600 text-xl me-2"
+                    ></i>
+                    Free Appointments
+                  </li>
+                  <li class="mb-1 flex">
+                    <i
+                      class="uil uil-check-circle text-indigo-600 text-xl me-2"
+                    ></i>
+                    Enhanced Security
+                  </li>
+                </ul>
+                <a
+                  href=""
+                  class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md mt-5"
+                  >Try it Now</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end col-->
+    </div>
+    <!--end grid-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- End -->
+
+<!-- Start -->
+<section class="relative md:py-24 py-16 bg-gray-50 dark:bg-slate-800" id="team">
+  <div class="container relative">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h3
+        class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold"
+      >
+        Our Professional Team
+      </h3>
+
+      <p class="text-slate-400 max-w-xl mx-auto">
+        Start working with Tailwind CSS that can provide everything you need to
+        generate awareness, drive traffic, connect.
+      </p>
+    </div>
+    <!--end grid-->
+
+    <div class="grid md:grid-cols-12 grid-cols-1 mt-8 gap-[30px]">
+      <div class="lg:col-span-3 md:col-span-6">
+        <div class="group text-center">
+          <div
+            class="relative inline-block mx-auto size-52 rounded-full overflow-hidden"
+          >
+            <img src="assets/images/client/04.jpg" class="" alt="" />
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-transparent to-black size-52 rounded-full opacity-0 group-hover:opacity-100 duration-500"
+            ></div>
+
+            <ul
+              class="list-none absolute start-0 end-0 -bottom-20 group-hover:bottom-5 duration-500"
+            >
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="facebook" class="size-4"></i-feather
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="instagram" class="size-4"></i-feather
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="linkedin" class="size-4"></i-feather
+                ></a>
+              </li>
+            </ul>
+            <!--end icon-->
+          </div>
+
+          <div class="content mt-3">
+            <a
+              href=""
+              class="text-lg font-semibold hover:text-indigo-600 duration-500"
+              >Jack John</a
+            >
+            <p class="text-slate-400">Designer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 md:col-span-6">
+        <div class="group text-center">
+          <div
+            class="relative inline-block mx-auto size-52 rounded-full overflow-hidden"
+          >
+            <img src="assets/images/client/05.jpg" class="" alt="" />
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-transparent to-black size-52 rounded-full opacity-0 group-hover:opacity-100 duration-500"
+            ></div>
+
+            <ul
+              class="list-none absolute start-0 end-0 -bottom-20 group-hover:bottom-5 duration-500"
+            >
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="facebook" class="size-4"></i-feather
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="instagram" class="size-4"></i-feather
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="linkedin" class="size-4"></i-feather
+                ></a>
+              </li>
+            </ul>
+            <!--end icon-->
+          </div>
+
+          <div class="content mt-3">
+            <a
+              href=""
+              class="text-lg font-semibold hover:text-indigo-600 duration-500"
+              >Krista John</a
+            >
+            <p class="text-slate-400">Designer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 md:col-span-6">
+        <div class="group text-center">
+          <div
+            class="relative inline-block mx-auto size-52 rounded-full overflow-hidden"
+          >
+            <img src="assets/images/client/06.jpg" class="" alt="" />
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-transparent to-black size-52 rounded-full opacity-0 group-hover:opacity-100 duration-500"
+            ></div>
+
+            <ul
+              class="list-none absolute start-0 end-0 -bottom-20 group-hover:bottom-5 duration-500"
+            >
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="facebook" class="size-4"></i-feather
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="instagram" class="size-4"></i-feather
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="linkedin" class="size-4"></i-feather
+                ></a>
+              </li>
+            </ul>
+            <!--end icon-->
+          </div>
+
+          <div class="content mt-3">
+            <a
+              href=""
+              class="text-lg font-semibold hover:text-indigo-600 duration-500"
+              >Roger Jackson</a
+            >
+            <p class="text-slate-400">Designer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 md:col-span-6">
+        <div class="group text-center">
+          <div
+            class="relative inline-block mx-auto size-52 rounded-full overflow-hidden"
+          >
+            <img src="assets/images/client/07.jpg" class="" alt="" />
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-transparent to-black size-52 rounded-full opacity-0 group-hover:opacity-100 duration-500"
+            ></div>
+
+            <ul
+              class="list-none absolute start-0 end-0 -bottom-20 group-hover:bottom-5 duration-500"
+            >
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="facebook" class="size-4"></i-feather
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="instagram" class="size-4"></i-feather
+                ></a>
+              </li>
+              <li class="inline">
+                <a
+                  href=""
+                  class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center rounded-full border border-indigo-600 bg-indigo-600 hover:border-indigo-600 hover:bg-indigo-600 text-white"
+                  ><i-feather name="linkedin" class="size-4"></i-feather
+                ></a>
+              </li>
+            </ul>
+            <!--end icon-->
+          </div>
+
+          <div class="content mt-3">
+            <a
+              href=""
+              class="text-lg font-semibold hover:text-indigo-600 duration-500"
+              >Johnny English</a
+            >
+            <p class="text-slate-400">Designer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end grid-->
+  </div>
+  <!--end container-->
+</section>
+<!-- End -->
+
+<!-- Start -->
+<section class="relative md:py-24 py-16" id="review">
+  <div class="container relative">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h3
+        class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold"
+      >
+        What Our Users Say
+      </h3>
+
+      <p class="text-slate-400 max-w-xl mx-auto">
+        Start working with Tailwind CSS that can provide everything you need to
+        generate awareness, drive traffic, connect.
+      </p>
+    </div>
+    <!--end grid-->
+
+    <div class="grid grid-cols-1 mt-8">
+      <div class="tiny-three-item">
+        <div class="tiny-slide text-center">
+          <div class="cursor-e-resize">
+            <div
+              class="content relative rounded shadow dark:shadow-gray-800 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-testi dark:before:shadow-gray-700 before:origin-top-left"
+            >
+              <i class="mdi mdi-format-quote-open mdi-48px text-indigo-600"></i>
+              <p class="text-slate-400">
+                " It seems that only fragments of the original text remain in
+                the Lorem Ipsum texts used today. "
+              </p>
+              <ul class="list-none mb-0 text-amber-400 mt-3">
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+              </ul>
+            </div>
+
+            <div class="text-center mt-5">
+              <img
+                src="assets/images/client/01.jpg"
+                class="size-14 rounded-full shadow-md mx-auto"
+                alt=""
+              />
+              <h6 class="mt-2 font-semibold">Calvin Carlo</h6>
+              <span class="text-slate-400 text-sm">Manager</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tiny-slide text-center">
+          <div class="cursor-e-resize">
+            <div
+              class="content relative rounded shadow dark:shadow-gray-800 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-testi dark:before:shadow-gray-700 before:origin-top-left"
+            >
+              <i class="mdi mdi-format-quote-open mdi-48px text-indigo-600"></i>
+              <p class="text-slate-400">
+                " The most well-known dummy text is the 'Lorem Ipsum', which is
+                said to have originated in the 16th century. "
+              </p>
+              <ul class="list-none mb-0 text-amber-400 mt-3">
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+              </ul>
+            </div>
+
+            <div class="text-center mt-5">
+              <img
+                src="assets/images/client/02.jpg"
+                class="size-14 rounded-full shadow-md mx-auto"
+                alt=""
+              />
+              <h6 class="mt-2 font-semibold">Christa Smith</h6>
+              <span class="text-slate-400 text-sm">Manager</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tiny-slide text-center">
+          <div class="cursor-e-resize">
+            <div
+              class="content relative rounded shadow dark:shadow-gray-800 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-testi dark:before:shadow-gray-700 before:origin-top-left"
+            >
+              <i class="mdi mdi-format-quote-open mdi-48px text-indigo-600"></i>
+              <p class="text-slate-400">
+                " One disadvantage of Lorum Ipsum is that in Latin certain
+                letters appear more frequently than others. "
+              </p>
+              <ul class="list-none mb-0 text-amber-400 mt-3">
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+              </ul>
+            </div>
+
+            <div class="text-center mt-5">
+              <img
+                src="assets/images/client/03.jpg"
+                class="size-14 rounded-full shadow-md mx-auto"
+                alt=""
+              />
+              <h6 class="mt-2 font-semibold">Jemina CLone</h6>
+              <span class="text-slate-400 text-sm">Manager</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tiny-slide text-center">
+          <div class="cursor-e-resize">
+            <div
+              class="content relative rounded shadow dark:shadow-gray-800 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-testi dark:before:shadow-gray-700 before:origin-top-left"
+            >
+              <i class="mdi mdi-format-quote-open mdi-48px text-indigo-600"></i>
+              <p class="text-slate-400">
+                " Thus, Lorem Ipsum has only limited suitability as a visual
+                filler for German texts. "
+              </p>
+              <ul class="list-none mb-0 text-amber-400 mt-3">
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+              </ul>
+            </div>
+
+            <div class="text-center mt-5">
+              <img
+                src="assets/images/client/04.jpg"
+                class="size-14 rounded-full shadow-md mx-auto"
+                alt=""
+              />
+              <h6 class="mt-2 font-semibold">Smith Vodka</h6>
+              <span class="text-slate-400 text-sm">Manager</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tiny-slide text-center">
+          <div class="cursor-e-resize">
+            <div
+              class="content relative rounded shadow dark:shadow-gray-800 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-testi dark:before:shadow-gray-700 before:origin-top-left"
+            >
+              <i class="mdi mdi-format-quote-open mdi-48px text-indigo-600"></i>
+              <p class="text-slate-400">
+                " There is now an abundance of readable dummy texts. These are
+                usually used when a text is required. "
+              </p>
+              <ul class="list-none mb-0 text-amber-400 mt-3">
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+              </ul>
+            </div>
+
+            <div class="text-center mt-5">
+              <img
+                src="assets/images/client/05.jpg"
+                class="size-14 rounded-full shadow-md mx-auto"
+                alt=""
+              />
+              <h6 class="mt-2 font-semibold">Cristino Murfi</h6>
+              <span class="text-slate-400 text-sm">Manager</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tiny-slide text-center">
+          <div class="cursor-e-resize">
+            <div
+              class="content relative rounded shadow dark:shadow-gray-800 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-testi dark:before:shadow-gray-700 before:origin-top-left"
+            >
+              <i class="mdi mdi-format-quote-open mdi-48px text-indigo-600"></i>
+              <p class="text-slate-400">
+                " According to most sources, Lorum Ipsum can be traced back to a
+                text composed by Cicero. "
+              </p>
+              <ul class="list-none mb-0 text-amber-400 mt-3">
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+                <li class="inline"><i class="mdi mdi-star"></i></li>
+              </ul>
+            </div>
+
+            <div class="text-center mt-5">
+              <img
+                src="assets/images/client/06.jpg"
+                class="size-14 rounded-full shadow-md mx-auto"
+                alt=""
+              />
+              <h6 class="mt-2 font-semibold">Cristino Murfi</h6>
+              <span class="text-slate-400 text-sm">Manager</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end grid-->
+  </div>
+  <!--end container-->
+</section>
+<!-- End -->
+
+<!-- Start -->
+<section class="relative md:py-24 py-16 bg-gray-50 dark:bg-slate-800" id="blog">
+  <div class="container relative">
+    <div class="grid md:grid-cols-12 grid-cols-1 items-center">
+      <div class="md:col-span-6">
+        <h6 class="text-indigo-600 text-sm font-bold uppercase mb-2">Blogs</h6>
+        <h3
+          class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold"
+        >
+          Reads Our Latest <br />
+          News & Blog
+        </h3>
+      </div>
+
+      <div class="md:col-span-6">
+        <p class="text-slate-400 max-w-xl">
+          Start working with Techwind that can provide everything you need to
+          generate awareness, drive traffic, connect.
+        </p>
+      </div>
+    </div>
+    <!--end grid-->
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-8 gap-[30px]">
+      <div
+        class="blog relative rounded-md shadow dark:shadow-gray-800 overflow-hidden"
+      >
+        <img src="assets/images/blog/01.jpg" alt="" />
+
+        <div class="content p-6">
+          <a
+            href="blog-detail.html"
+            class="title h5 text-lg font-medium hover:text-indigo-600 duration-500 ease-in-out"
+            >Design your apps in your own way</a
+          >
+          <p class="text-slate-400 mt-3">
+            The phrasal sequence of the is now so that many campaign and benefit
+          </p>
+
+          <div class="mt-4">
+            <a
+              href="blog-detail.html"
+              class="relative inline-block tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 font-normal hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
+              >Read More <i class="uil uil-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="blog relative rounded-md shadow dark:shadow-gray-800 overflow-hidden"
+      >
+        <img src="assets/images/blog/02.jpg" alt="" />
+
+        <div class="content p-6">
+          <a
+            href="blog-detail.html"
+            class="title h5 text-lg font-medium hover:text-indigo-600 duration-500 ease-in-out"
+            >How apps is changing the IT world</a
+          >
+          <p class="text-slate-400 mt-3">
+            The phrasal sequence of the is now so that many campaign and benefit
+          </p>
+
+          <div class="mt-4">
+            <a
+              href="blog-detail.html"
+              class="relative inline-block tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 font-normal hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
+              >Read More <i class="uil uil-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="blog relative rounded-md shadow dark:shadow-gray-800 overflow-hidden"
+      >
+        <img src="assets/images/blog/03.jpg" alt="" />
+
+        <div class="content p-6">
+          <a
+            href="blog-detail.html"
+            class="title h5 text-lg font-medium hover:text-indigo-600 duration-500 ease-in-out"
+            >Smartest Applications for Business</a
+          >
+          <p class="text-slate-400 mt-3">
+            The phrasal sequence of the is now so that many campaign and benefit
+          </p>
+
+          <div class="mt-4">
+            <a
+              href="blog-detail.html"
+              class="relative inline-block tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 font-normal hover:text-indigo-600 after:bg-indigo-600 duration-500 ease-in-out"
+              >Read More <i class="uil uil-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end grid-->
+  </div>
+  <!--end container-->
+</section>
+<!--end section-->
+<!-- End -->
+
+<!-- Footer Start -->
+<footer class="footer bg-dark-footer relative text-gray-200 dark:text-gray-200">
+  <div class="container relative">
+    <div class="grid grid-cols-12">
+      <div class="col-span-12">
+        <div class="py-[60px] px-0">
+          <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
+            <div class="lg:col-span-4 md:col-span-12">
+              <a href="#" class="text-[22px] focus:outline-none">
+                <img src="assets/images/logo-light.png" alt="" />
+              </a>
+              <p class="mt-6 text-gray-300">
+                Start working with Tailwind CSS that can provide everything you
+                need to generate awareness, drive traffic, connect.
+              </p>
+              <ul class="list-none mt-6">
+                <li class="inline">
+                  <a
+                    href="https://1.envato.market/techwind"
+                    target="_blank"
+                    class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                    ><i
+                      class="uil uil-shopping-cart align-middle"
+                      title="Buy Now"
+                    ></i
+                  ></a>
+                </li>
+                <li class="inline">
+                  <a
+                    href="https://dribbble.com/shreethemes"
+                    target="_blank"
+                    class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                    ><i
+                      class="uil uil-dribbble align-middle"
+                      title="dribbble"
+                    ></i
+                  ></a>
+                </li>
+                <li class="inline">
+                  <a
+                    href="https://www.behance.net/shreethemes"
+                    target="_blank"
+                    class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                    ><i class="uil uil-behance" title="Behance"></i
+                  ></a>
+                </li>
+                <li class="inline">
+                  <a
+                    href="http://linkedin.com/company/shreethemes"
+                    target="_blank"
+                    class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                    ><i class="uil uil-linkedin" title="Linkedin"></i
+                  ></a>
+                </li>
+                <li class="inline">
+                  <a
+                    href="https://www.facebook.com/shreethemes"
+                    target="_blank"
+                    class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                    ><i
+                      class="uil uil-facebook-f align-middle"
+                      title="facebook"
+                    ></i
+                  ></a>
+                </li>
+                <li class="inline">
+                  <a
+                    href="https://www.instagram.com/shreethemes/"
+                    target="_blank"
+                    class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                    ><i
+                      class="uil uil-instagram align-middle"
+                      title="instagram"
+                    ></i
+                  ></a>
+                </li>
+                <li class="inline">
+                  <a
+                    href="https://twitter.com/shreethemes"
+                    target="_blank"
+                    class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                    ><i class="uil uil-twitter align-middle" title="twitter"></i
+                  ></a>
+                </li>
+                <li class="inline">
+                  <a
+                    href="mailto:support@shreethemes.in"
+                    class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                    ><i class="uil uil-envelope align-middle" title="email"></i
+                  ></a>
+                </li>
+                <li class="inline">
+                  <a
+                    href="https://forms.gle/QkTueCikDGqJnbky9"
+                    target="_blank"
+                    class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"
+                    ><i
+                      class="uil uil-file align-middle"
+                      title="customization"
+                    ></i
+                  ></a>
+                </li>
+              </ul>
+              <!--end icon-->
+            </div>
+            <!--end col-->
+
+            <div class="lg:col-span-2 md:col-span-4">
+              <h5 class="tracking-[1px] text-gray-100 font-semibold">
+                Company
+              </h5>
+              <ul class="list-none footer-list mt-6">
+                <li>
+                  <a
+                    href="page-aboutus.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> About us</a
+                  >
+                </li>
+                <li class="mt-[10px]">
+                  <a
+                    href="page-services.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Services</a
+                  >
+                </li>
+                <li class="mt-[10px]">
+                  <a
+                    href="page-team.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Team</a
+                  >
+                </li>
+                <li class="mt-[10px]">
+                  <a
+                    href="page-pricing.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Pricing</a
+                  >
+                </li>
+                <li class="mt-[10px]">
+                  <a
+                    href="portfolio-creative-four.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Project</a
+                  >
+                </li>
+                <li class="mt-[10px]">
+                  <a
+                    href="blog.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Blog</a
+                  >
+                </li>
+                <li class="mt-[10px]">
+                  <a
+                    href="auth-login.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Login</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!--end col-->
+
+            <div class="lg:col-span-3 md:col-span-4">
+              <h5 class="tracking-[1px] text-gray-100 font-semibold">
+                Usefull Links
+              </h5>
+              <ul class="list-none footer-list mt-6">
+                <li>
+                  <a
+                    href="page-terms.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Terms of Services</a
+                  >
+                </li>
+                <li class="mt-[10px]">
+                  <a
+                    href="page-privacy.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Privacy Policy</a
+                  >
+                </li>
+                <li class="mt-[10px]">
+                  <a
+                    href="documentation.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Documentation</a
+                  >
+                </li>
+                <li class="mt-[10px]">
+                  <a
+                    href="changelog.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Changelog</a
+                  >
+                </li>
+                <li class="mt-[10px]">
+                  <a
+                    href="widget.html"
+                    class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"
+                    ><i class="uil uil-angle-right-b"></i> Widget</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <!--end col-->
+
+            <div class="lg:col-span-3 md:col-span-4">
+              <h5 class="tracking-[1px] text-gray-100 font-semibold">
+                Newsletter
+              </h5>
+              <p class="mt-6">Sign up and receive the latest tips via email.</p>
+              <form>
+                <div class="grid grid-cols-1">
+                  <div class="my-3">
+                    <label class="form-label"
+                      >Write your email
+                      <span class="text-red-600">*</span></label
+                    >
+                    <div class="form-icon relative mt-2">
+                      <i
+                        data-feather="mail"
+                        class="size-4 absolute top-3 start-4"
+                      ></i>
+                      <input
+                        type="email"
+                        class="form-input ps-12 rounded w-full py-2 px-3 h-10 bg-gray-800 border-0 text-gray-100 focus:shadow-none focus:ring-0 placeholder:text-gray-200"
+                        placeholder="Email"
+                        name="email"
+                        required=""
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    id="submitsubscribe"
+                    name="send"
+                    class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </form>
+            </div>
+            <!--end col-->
+          </div>
+          <!--end grid-->
+        </div>
+        <!--end col-->
+      </div>
+    </div>
+    <!--end grid-->
+  </div>
+  <!--end container-->
+
+  <div class="py-[30px] px-0 border-t border-slate-800">
+    <div class="container relative text-center">
+      <div class="grid md:grid-cols-2 items-center">
+        <div class="md:text-start text-center">
+          <p class="mb-0">
+            ©
+            <script>
+              document.write(new Date().getFullYear());
+            </script>
+            Techwind. Design with <i class="mdi mdi-heart text-red-600"></i> by
+            <a href="https://shreethemes.in/" target="_blank" class="text-reset"
+              >Shreethemes</a
+            >.
+          </p>
+        </div>
+
+        <ul class="list-none md:text-end text-center mt-6 md:mt-0">
+          <li class="inline">
+            <a href=""
+              ><img
+                src="assets/images/payments/american-ex.png"
+                class="max-h-6 inline"
+                title="American Express"
+                alt=""
+            /></a>
+          </li>
+          <li class="inline">
+            <a href=""
+              ><img
+                src="assets/images/payments/discover.png"
+                class="max-h-6 inline"
+                title="Discover"
+                alt=""
+            /></a>
+          </li>
+          <li class="inline">
+            <a href=""
+              ><img
+                src="assets/images/payments/master-card.png"
+                class="max-h-6 inline"
+                title="Master Card"
+                alt=""
+            /></a>
+          </li>
+          <li class="inline">
+            <a href=""
+              ><img
+                src="assets/images/payments/paypal.png"
+                class="max-h-6 inline"
+                title="Paypal"
+                alt=""
+            /></a>
+          </li>
+          <li class="inline">
+            <a href=""
+              ><img
+                src="assets/images/payments/visa.png"
+                class="max-h-6 inline"
+                title="Visa"
+                alt=""
+            /></a>
+          </li>
+        </ul>
+      </div>
+      <!--end grid-->
+    </div>
+    <!--end container-->
+  </div>
+</footer>
+<!--end footer-->
+<!-- Footer End -->
+
+<!-- Start Cookie Popup -->
+<!-- <div
+  class="cookie-popup fixed max-w-lg bottom-3 end-3 start-3 sm:start-0 mx-auto bg-white dark:bg-slate-900 shadow dark:shadow-gray-800 rounded-md py-5 px-6 z-50"
+>
+  <p class="text-slate-400">
+    This website uses cookies to provide you with a great user experience. By
+    using it, you accept our
+    <a
+      href="https://shreethemes.in"
+      target="_blank"
+      class="text-emerald-600 dark:text-emerald-500 font-semibold"
+      >use of cookies</a
+    >
+  </p>
+  <div class="cookie-popup-actions text-end">
+    <button
+      class="absolute border-none bg-none p-0 cursor-pointer font-semibold top-2 end-2"
+    >
+      <i class="uil uil-times text-dark dark:text-slate-200 text-2xl"></i>
+    </button>
+  </div>
+</div> -->
+<!--Note: Cookies Js including in plugins.init.js (path like; assets/js/plugins.init.js) and Cookies css including in _helper.scss (path like; scss/_helper.scss)-->
+<!-- End Cookie Popup -->
+
+<!-- Back to top -->
+<a
+  href="#"
+  id="back-to-top"
+  class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-indigo-600 text-white leading-9"
+  ><i-feather name="arrow-up" class="uil uil-arrow-up"></i-feather
+></a>
+<!-- Back to top -->
+
+<!-- Switcher -->
+<div class="fixed top-[30%] -right-2 z-50">
+  <span class="relative inline-block rotate-90">
+    <input type="checkbox" class="checkbox opacity-0 absolute" id="chk" />
+    <label
+      class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-800 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8"
+      for="chk"
+    >
+      <i class="uil uil-moon text-[20px] text-yellow-500"></i>
+      <i class="uil uil-sun text-[20px] text-yellow-500"></i>
+      <span
+        class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] size-7"
+      ></span>
+    </label>
+  </span>
+</div>
+<!-- Switcher -->
+
+<!-- LTR & RTL Mode Code -->
+<div class="fixed top-[40%] -right-3 z-50">
+  <a href="" id="switchRtl">
+    <span
+      class="py-1 px-3 relative inline-block rounded-t-md -rotate-90 bg-white dark:bg-slate-900 shadow-md dark:shadow dark:shadow-gray-800 font-bold rtl:block ltr:hidden"
+      >LTR</span
+    >
+    <span
+      class="py-1 px-3 relative inline-block rounded-t-md -rotate-90 bg-white dark:bg-slate-900 shadow-md dark:shadow dark:shadow-gray-800 font-bold ltr:block rtl:hidden"
+      >RTL</span
+    >
+  </a>
+</div>
+<span appBehaviors></span>

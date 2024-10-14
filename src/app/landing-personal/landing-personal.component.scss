@@ -1,0 +1,16 @@
+@tailwind components;
+
+.dark {
+  @apply text-white;
+}
+#topnav:not(.nav-sticky) {
+  @extend .dark;
+}
+
+#topnav {
+  ::ng-deep {
+    i-feather {
+      @apply size-4 #{!important};
+    }
+  }
+}
