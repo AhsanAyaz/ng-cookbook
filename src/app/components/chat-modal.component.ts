@@ -17,14 +17,14 @@ import { MarkdownComponent } from './markdown/markdown.component';
   standalone: true,
   imports: [CommonModule, FormsModule, MarkdownComponent],
   template: `
-    <div class="flex h-[80vh] flex-col w-[80wv]  md:w-[50vw] mx-auto">
+    <div class="flex h-[80vh] flex-col w-[90vw] md:w-[50vw] mx-auto">
       <div
         class="flex justify-between items-center p-4  bg-slate-200 dark:bg-slate-900 rounded-xl mb-1"
       >
         <h2 class="text-lg font-semibold">Ask NG Cookbook AI</h2>
         <button
           (click)="closeModal()"
-          class="text-gray-500 hover:text-gray-800"
+          class="text-gray-500 hover:text-gray-800 text-2xl"
         >
           &times;
           <!-- Close icon -->
@@ -58,21 +58,22 @@ import { MarkdownComponent } from './markdown/markdown.component';
           </div>
         </div>
         } @if (message.role === 'assistant') {
-        <div class="flex flex-col gap-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 place-content-end">
           @for (suggestion of suggestedQuestions; track suggestion) {
           <button
             (click)="sendMessage(suggestion)"
-            class="mr-2 mb-2 px-2 py-1 bg-gray-200 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white dark:bg-slate-800 rounded text-sm mt-2"
+            class="px-2 py-1 bg-gray-200 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white dark:bg-slate-800 rounded text-sm"
           >
             {{ suggestion }}
           </button>
-          }
+          } @if(!loading && !streamingMessage) {
           <button
             (click)="regenerateResponse(message)"
-            class="text-xs text-indigo-500 mt-1"
+            class="px-2 py-1 bg-gray-200 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white dark:bg-slate-800 rounded text-sm"
           >
             Regenerate
           </button>
+          }
         </div>
         } } @empty {
         <div
@@ -80,32 +81,21 @@ import { MarkdownComponent } from './markdown/markdown.component';
         >
           <img src="assets/images/bot.png" class="h-36 w-36" />
           <div class="text-center text-slate-500 text-3xl">
-            Ask me anything about the Angular Cookbook
+            Ask me anything about the
+            <br />
+            <a
+              href="https://amzn.to/4awwLgH"
+              class="hover:text-indigo-500 underline"
+              target="_blank"
+              >Angular Cookbook</a
+            >
           </div>
         </div>
         } @if(loading && !streamingMessage) {
         <div class="flex flex-row-reverse items-center justify-start">
           <img class="ml-2 h-8 w-8 rounded-full" src="assets/images/bot.png" />
           <!-- Adjust size as needed -->
-          <svg
-            class="animate-spin h-8 w-8 text-indigo-500"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              class="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              stroke-width="4"
-            ></circle>
-            <path
-              class="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8v8H4z"
-            ></path>
-          </svg>
+          <ng-container [ngTemplateOutlet]="loadingSpinner" ]></ng-container>
         </div>
         } @if(streamingMessage) {
         <div class="flex flex-row-reverse items-start">
@@ -175,6 +165,10 @@ import { MarkdownComponent } from './markdown/markdown.component';
             </button>
           </div>
         </div>
+
+        <div class="flex mt-4 items-center justify-center">
+          <ng-container [ngTemplateOutlet]="loadingSpinner" ]></ng-container>
+        </div>
         }
       </div>
       <!-- Prompt message input -->
@@ -226,6 +220,27 @@ import { MarkdownComponent } from './markdown/markdown.component';
           </button>
         </div>
       </form>
+      <ng-template #loadingSpinner>
+        <svg
+          class="animate-spin h-8 w-8 text-indigo-500"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          ></circle>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v8H4z"
+          ></path>
+        </svg>
+      </ng-template>
     </div>
   `,
 })
@@ -246,6 +261,12 @@ export class ChatModalComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.chatService.messages$.subscribe((messages) => {
         this.messages = messages;
+        if (
+          messages.length > 0 &&
+          messages.at(-1)?.content === 'Sorry, an error occurred.'
+        ) {
+          this.loading = false;
+        }
         this.scrollToBottom();
       }),
       this.chatService.streamingMessage$.subscribe((content) => {

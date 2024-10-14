@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 export interface Message {
   id: string;
@@ -18,7 +18,8 @@ interface StreamChunk {
   providedIn: 'root',
 })
 export class ChatService {
-  private apiUrl = 'http://localhost:8000/api/chat';
+  private apiUrl =
+    'https://ng-cookbook-assistant-production.up.railway.app/api/chat';
   private messagesSubject = new BehaviorSubject<Message[]>([]);
   private streamingMessageSubject = new Subject<string>();
   private suggestedQuestionsSubject = new Subject<string[]>();
@@ -109,10 +110,18 @@ export class ChatService {
 
   private parseChunk(chunk: string): StreamChunk | null {
     if (chunk.startsWith('0:')) {
-      return {
-        type: 'content',
-        data: decodeURIComponent(chunk.slice(2).replace(/^"|"$/g, '')),
-      };
+      try {
+        return {
+          type: 'content',
+          data: decodeURIComponent(chunk.slice(2).replace(/^"|"$/g, '')),
+        };
+      } catch (e) {
+        console.error('Error parsing chunk:', e);
+        return {
+          type: 'content',
+          data: chunk.slice(2).replace(/^"|"$/g, ''),
+        };
+      }
     }
     if (chunk.startsWith('8:')) {
       try {
@@ -123,6 +132,7 @@ export class ChatService {
         }
       } catch (e) {
         console.error('Error parsing chunk:', e);
+        return null;
       }
     }
     return null;

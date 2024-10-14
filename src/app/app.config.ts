@@ -29,7 +29,6 @@ import {
   User,
   Mail,
   Book,
-  MessageCircle,
   PieChart,
   Briefcase,
   Target,
@@ -46,6 +45,18 @@ import {
   Linkedin,
   ArrowUp,
   ShoppingCart,
+  MessageCircle,
+  FileText,
+  Zap,
+  Shield,
+  Pocket,
+  Send,
+  ArrowRight,
+  RefreshCcw,
+  List,
+  Play,
+  Layers,
+  GitBranch,
 } from 'angular-feather/icons';
 
 const icons = {
@@ -71,6 +82,18 @@ const icons = {
   Instagram,
   Linkedin,
   ShoppingCart,
+  FileText,
+  Zap,
+  Shield,
+  Pocket,
+  Send,
+  ArrowRight,
+  RefreshCcw,
+  List,
+  Play,
+  Layers,
+  GitBranch,
+  Github,
 };
 
 export const appConfig: ApplicationConfig = {

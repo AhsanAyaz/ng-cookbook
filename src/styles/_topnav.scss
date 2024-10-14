@@ -156,7 +156,7 @@
     > li {
       @apply ltr:float-left rtl:float-right block relative my-0 mx-[10px];
       > a {
-        @apply block text-black dark:text-white text-[13px] bg-transparent font-bold tracking-[1px] leading-6 uppercase px-[14px] #{!important};
+        @apply text-black dark:text-white text-[13px] font-bold tracking-[1px] leading-6 uppercase;
         &:hover,
         &:active {
           @apply text-indigo-600;
@@ -383,32 +383,32 @@
             }
           }
         }
-        > a {
-          @apply py-[25px] min-h-[62px];
-        }
+        // > a {
+        //   @apply py-[25px] min-h-[62px];
+        // }
         &:hover {
           > .menu-arrow {
             @apply border-indigo-600 dark:border-indigo-600;
           }
         }
-        &:hover,
-        &.active {
-          > a {
-            @apply text-indigo-600 dark:text-indigo-600 #{!important};
-          }
-        }
-        &.last-elements {
-          .submenu {
-            @apply start-auto end-0 before:start-auto before:end-[10px];
-            > li {
-              &.has-submenu {
-                .submenu {
-                  @apply start-auto end-full ms-0 me-[10px];
-                }
-              }
-            }
-          }
-        }
+        // &:hover,
+        // &.active {
+        //   > a {
+        //     @apply text-indigo-600 dark:text-indigo-600 #{!important};
+        //   }
+        // }
+        // &.last-elements {
+        //   .submenu {
+        //     @apply start-auto end-0 before:start-auto before:end-[10px];
+        //     > li {
+        //       &.has-submenu {
+        //         .submenu {
+        //           @apply start-auto end-full ms-0 me-[10px];
+        //         }
+        //       }
+        //     }
+        //   }
+        // }
       }
       &.nav-light {
         > li {
