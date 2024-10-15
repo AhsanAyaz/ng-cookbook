@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { ChatService, Message } from '../services/chat.service';
 import { Subscription } from 'rxjs';
 import { MarkdownComponent } from './markdown/markdown.component';
+import { logEvent, getAnalytics } from '@angular/fire/analytics';
+import { AnalyticsEvent } from '../constants/analyticsEvents';
 @Component({
   selector: 'app-chat-modal',
   standalone: true,
@@ -61,7 +63,7 @@ import { MarkdownComponent } from './markdown/markdown.component';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 place-content-end">
           @for (suggestion of suggestedQuestions; track suggestion) {
           <button
-            (click)="sendMessage(suggestion)"
+            (click)="sendMessage(suggestion, true)"
             class="px-2 py-1 bg-gray-200 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white dark:bg-slate-800 rounded text-sm"
           >
             {{ suggestion }}
@@ -257,6 +259,10 @@ export class ChatModalComponent implements OnInit, OnDestroy {
   loading = false;
   close = output<void>();
   private subscriptions: Subscription[] = [];
+  events = AnalyticsEvent;
+  sendAnalyticsEvent(event: AnalyticsEvent) {
+    logEvent(getAnalytics(), event);
+  }
 
   constructor(private chatService: ChatService) {}
 
@@ -269,6 +275,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
           messages.at(-1)?.content === 'Sorry, an error occurred.'
         ) {
           this.loading = false;
+          this.sendAnalyticsEvent(this.events.NGCB2_CHAT_REQUEST_ERROR);
         }
         this.scrollToBottom();
       }),
@@ -293,13 +300,18 @@ export class ChatModalComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
-  async sendMessage(content: string = this.userInput) {
+  async sendMessage(content: string = this.userInput, isSuggestion = false) {
     if (content.trim() === '' || this.loading || this.streamingMessage) return;
     this.loading = true;
     this.userInput = '';
     this.streamingMessage = '';
     this.suggestedQuestions = [];
     await this.chatService.sendMessage(content);
+    if (isSuggestion) {
+      this.sendAnalyticsEvent(this.events.NGCB2_CHAT_SUGGESTION_CLICK);
+    } else {
+      this.sendAnalyticsEvent(this.events.NGCB2_CHATAI_MESSAGE);
+    }
   }
 
   async regenerateResponse(message: Message) {
@@ -308,6 +320,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
       const userMessage = this.messages[index - 1].content;
       this.messages.splice(index, 1);
       await this.sendMessage(userMessage);
+      this.sendAnalyticsEvent(this.events.NGCB2_CHAT_REGENERATE_CLICK);
     }
   }
 
@@ -322,5 +335,6 @@ export class ChatModalComponent implements OnInit, OnDestroy {
 
   closeModal() {
     this.close.emit();
+    this.sendAnalyticsEvent(this.events.NGCB2_CHATAI_CLOSE);
   }
 }

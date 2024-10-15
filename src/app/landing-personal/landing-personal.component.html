@@ -17,6 +17,7 @@
       </li>
       <li class="inline ps-1 mb-0">
         <a
+          (click)="sendAnalyticsEvent(events.NGCB2_BUY_CLICK)"
           href="https://amzn.to/4awwLgH"
           target="_blank"
           class="flex w-10 h-10 items-center justify-center gap-2 bg-indigo-500 text-white p-2 shadow-lg hover:bg-white hover:text-indigo-500 rounded-full duration-150 cursor-pointer"
@@ -26,6 +27,7 @@
       </li>
       <li>
         <a
+          (click)="sendAnalyticsEvent(events.NGCB2_GH_CLICK)"
           href="https://github.com/PacktPublishing/Angular-Cookbook-2E"
           target="_blank"
           class="flex items-center justify-center w-10 h-10 p-0! gap-2 bg-indigo-500 text-white shadow-lg hover:bg-white hover:text-indigo-500 rounded-full duration-150 cursor-pointer"
@@ -522,6 +524,7 @@
         <a
           href="https://amzn.to/4awwLgH"
           target="_blank"
+          (click)="sendAnalyticsEvent(events.NGCB2_BUY_CLICK)"
           class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-slate-400 dark:text-white/70 dark:hover:text-white hover:text-indigo-600 after:bg-indigo-600 dark:after:bg-white duration-500 ease-in-out"
           >Get the Book <i class="uil uil-arrow-right"></i
         ></a>

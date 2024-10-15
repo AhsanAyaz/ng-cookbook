@@ -3,6 +3,8 @@ import { BehaviorsDirective } from '../directives/behaviors.directive';
 import { FeatherModule } from 'angular-feather';
 import { BookHeightDirective } from '../directives/book-height.directive';
 import { ChatComponent } from '../components/chat.component';
+import { logEvent, getAnalytics } from '@angular/fire/analytics';
+import { AnalyticsEvent } from '../constants/analyticsEvents';
 @Component({
   selector: 'app-landing-personal',
   standalone: true,
@@ -15,4 +17,9 @@ import { ChatComponent } from '../components/chat.component';
   templateUrl: './landing-personal.component.html',
   styleUrl: './landing-personal.component.scss',
 })
-export class LandingPersonalComponent {}
+export class LandingPersonalComponent {
+  events = AnalyticsEvent;
+  sendAnalyticsEvent(event: AnalyticsEvent) {
+    logEvent(getAnalytics(), event);
+  }
+}
