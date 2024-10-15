@@ -6,13 +6,14 @@ import {
   OnDestroy,
   viewChild,
   output,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ChatService, Message } from '../services/chat.service';
 import { Subscription } from 'rxjs';
 import { MarkdownComponent } from './markdown/markdown.component';
-import { logEvent, getAnalytics } from '@angular/fire/analytics';
+import { Analytics, logEvent } from '@angular/fire/analytics';
 import { AnalyticsEvent } from '../constants/analyticsEvents';
 @Component({
   selector: 'app-chat-modal',
@@ -260,8 +261,9 @@ export class ChatModalComponent implements OnInit, OnDestroy {
   close = output<void>();
   private subscriptions: Subscription[] = [];
   events = AnalyticsEvent;
+  analytics = inject(Analytics);
   sendAnalyticsEvent(event: AnalyticsEvent) {
-    logEvent(getAnalytics(), event);
+    logEvent(this.analytics, event);
   }
 
   constructor(private chatService: ChatService) {}

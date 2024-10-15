@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MailchimpNg2eComponent } from '../components/mailchimp-ng2e/mailchimp-ng2e.component';
-import { getAnalytics, logEvent } from '@angular/fire/analytics';
+import { Analytics, getAnalytics, logEvent } from '@angular/fire/analytics';
 import { HeaderComponent } from '../components/header/header.component';
 import { AnalyticsEvent } from '../constants/analyticsEvents';
 @Component({
@@ -13,7 +13,8 @@ import { AnalyticsEvent } from '../constants/analyticsEvents';
 })
 export class HomeComponent {
   events = AnalyticsEvent;
+  analytics = inject(Analytics);
   sendAnalyticsEvent(event: AnalyticsEvent) {
-    logEvent(getAnalytics(), event);
+    logEvent(this.analytics, event);
   }
 }

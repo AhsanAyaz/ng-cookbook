@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BehaviorsDirective } from '../directives/behaviors.directive';
 import { FeatherModule } from 'angular-feather';
 import { BookHeightDirective } from '../directives/book-height.directive';
 import { ChatComponent } from '../components/chat.component';
-import { logEvent, getAnalytics } from '@angular/fire/analytics';
+import { logEvent, getAnalytics, Analytics } from '@angular/fire/analytics';
 import { AnalyticsEvent } from '../constants/analyticsEvents';
 @Component({
   selector: 'app-landing-personal',
@@ -19,7 +19,8 @@ import { AnalyticsEvent } from '../constants/analyticsEvents';
 })
 export class LandingPersonalComponent {
   events = AnalyticsEvent;
+  analytics = inject(Analytics);
   sendAnalyticsEvent(event: AnalyticsEvent) {
-    logEvent(getAnalytics(), event);
+    logEvent(this.analytics, event);
   }
 }
