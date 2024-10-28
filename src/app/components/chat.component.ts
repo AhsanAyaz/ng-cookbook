@@ -12,11 +12,11 @@ import { ChatModalComponent } from './chat-modal.component';
   template: `
     <button
       (click)="openChatModal()"
-      class="flex items-center gap-2 p-2 rounded-full duration-150 cursor-pointer"
+      class="flex items-center text-sm md:text-base gap-2 p-2 rounded-full duration-150 cursor-pointer"
       [ngClass]="
         !showText()
-          ? 'hover:bg-indigo-500'
-          : 'hover:bg-white hover:text-indigo-500'
+          ? 'hover:bg-indigo-600 bg-indigo-500'
+          : 'bg-white text-indigo-500 hover:bg-slate-700 hover:text-white'
       "
     >
       @if (showText()) {

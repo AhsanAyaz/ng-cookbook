@@ -4,7 +4,7 @@
 #topnav {
   @apply fixed start-0 end-0 top-0 z-50 bg-transparent border-0 duration-500 flex justify-center;
   .logo {
-    @apply ltr:float-left rtl:float-right mr-8 text-black dark:text-white #{!important};
+    @apply ltr:float-left rtl:float-right text-black dark:text-white #{!important};
     .l-dark {
       @apply hidden;
     }
