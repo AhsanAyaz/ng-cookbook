@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 import { MarkdownComponent } from './markdown/markdown.component';
 import { Analytics, logEvent } from '@angular/fire/analytics';
 import { AnalyticsEvent } from '../constants/analyticsEvents';
+import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
 @Component({
   selector: 'app-chat-modal',
   standalone: true,
@@ -262,6 +263,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   events = AnalyticsEvent;
   analytics = inject(Analytics);
+  mixpanel = inject(MixpanelService);
   sendAnalyticsEvent(event: AnalyticsEvent) {
     logEvent(this.analytics, event);
   }
@@ -278,12 +280,16 @@ export class ChatModalComponent implements OnInit, OnDestroy {
         ) {
           this.loading = false;
           this.sendAnalyticsEvent(this.events.NGCB2_CHAT_REQUEST_ERROR);
+          this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_REQUEST_ERROR);
         }
         this.scrollToBottom();
       }),
       this.chatService.streamingMessage$.subscribe((content) => {
         if (content === 'ACTION: streaming_done') {
           this.loading = false;
+          this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHATAI_RESPONSE, {
+            message: this.streamingMessage,
+          });
           this.streamingMessage = '';
         } else {
           this.streamingMessage += content;
@@ -311,8 +317,12 @@ export class ChatModalComponent implements OnInit, OnDestroy {
     await this.chatService.sendMessage(content);
     if (isSuggestion) {
       this.sendAnalyticsEvent(this.events.NGCB2_CHAT_SUGGESTION_CLICK);
+      this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_SUGGESTION_CLICK);
     } else {
       this.sendAnalyticsEvent(this.events.NGCB2_CHATAI_MESSAGE);
+      this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHATAI_QUERY, {
+        message: content,
+      });
     }
   }
 
@@ -323,6 +333,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
       this.messages.splice(index, 1);
       await this.sendMessage(userMessage);
       this.sendAnalyticsEvent(this.events.NGCB2_CHAT_REGENERATE_CLICK);
+      this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_REGENERATE_CLICK);
     }
   }
 
