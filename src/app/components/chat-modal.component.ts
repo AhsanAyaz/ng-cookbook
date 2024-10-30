@@ -317,7 +317,9 @@ export class ChatModalComponent implements OnInit, OnDestroy {
     await this.chatService.sendMessage(content);
     if (isSuggestion) {
       this.sendAnalyticsEvent(this.events.NGCB2_CHAT_SUGGESTION_CLICK);
-      this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_SUGGESTION_CLICK);
+      this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_SUGGESTION_CLICK, {
+        message: content,
+      });
     } else {
       this.sendAnalyticsEvent(this.events.NGCB2_CHATAI_MESSAGE);
       this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHATAI_QUERY, {
@@ -333,7 +335,9 @@ export class ChatModalComponent implements OnInit, OnDestroy {
       this.messages.splice(index, 1);
       await this.sendMessage(userMessage);
       this.sendAnalyticsEvent(this.events.NGCB2_CHAT_REGENERATE_CLICK);
-      this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_REGENERATE_CLICK);
+      this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_REGENERATE_CLICK, {
+        message: message.content,
+      });
     }
   }
 
