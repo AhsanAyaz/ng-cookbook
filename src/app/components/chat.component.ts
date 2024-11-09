@@ -12,17 +12,19 @@ import { ChatModalComponent } from './chat-modal.component';
   template: `
     <button
       (click)="openChatModal()"
-      class="flex items-center text-sm md:text-base gap-2 p-2 rounded-full duration-150 cursor-pointer"
-      [ngClass]="
-        !showText()
-          ? 'hover:bg-indigo-600 bg-indigo-500'
-          : 'bg-white text-indigo-500 hover:bg-slate-700 hover:text-white'
-      "
+      class="btn btn-accent {{ btnClasses() }}"
+      [ngClass]="!showText() ? 'btn-circle' : ''"
     >
       @if (showText()) {
       <span>Chat with AI</span>
       }
-      <span class="bg-indigo-500 text-white p-2 rounded-full shadow-lg">
+      <span
+        class="p-2 rounded-full shadow-lg"
+        [ngClass]="{
+          'bg-slate-800': showText(),
+          'bg-transparent': !showText()
+        }"
+      >
         <img src="assets/images/bot.png" alt="chat" class="w-6 h-6" />
       </span>
     </button>
@@ -31,6 +33,7 @@ import { ChatModalComponent } from './chat-modal.component';
 export class ChatComponent {
   showText = input(false);
   private overlayRef: OverlayRef | null = null;
+  btnClasses = input('');
   constructor(private overlay: Overlay) {}
 
   openChatModal() {

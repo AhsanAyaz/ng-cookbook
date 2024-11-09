@@ -25,9 +25,9 @@
           (click)="buyClick()"
           href="https://amzn.to/4awwLgH"
           target="_blank"
-          class="flex w-10 h-10 items-center justify-center gap-2 bg-indigo-500 text-white p-2 shadow-lg hover:bg-white hover:text-indigo-500 rounded-full duration-150 cursor-pointer"
+          class="btn btn-accent"
         >
-          <i-feather name="shopping-cart" class="size-4"></i-feather
+          Buy <i-feather name="shopping-cart" class="size-4"></i-feather
         ></a>
       </li>
       <li>
@@ -35,9 +35,9 @@
           (click)="gitHubClick()"
           href="https://github.com/PacktPublishing/Angular-Cookbook-2E"
           target="_blank"
-          class="flex items-center justify-center w-10 h-10 p-0! gap-2 bg-indigo-500 text-white shadow-lg hover:bg-white hover:text-indigo-500 rounded-full duration-150 cursor-pointer"
+          class="btn btn-accent"
         >
-          <i-feather name="github" class="size-4"></i-feather
+          GitHub <i-feather name="github" class="size-4"></i-feather
         ></a>
       </li>
     </ul>
@@ -259,7 +259,7 @@
           <a
             href="https://codewithahsan.dev/about"
             target="_blank"
-            class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-slate-400 dark:text-white/70 dark:hover:text-white hover:text-indigo-600 after:bg-indigo-600 dark:after:bg-white duration-500 ease-in-out"
+            class="btn btn-accent"
             >Read More <i class="uil uil-arrow-right"></i
           ></a>
         </div>
@@ -530,7 +530,7 @@
           href="https://amzn.to/4awwLgH"
           target="_blank"
           (click)="buyClick()"
-          class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-slate-400 dark:text-white/70 dark:hover:text-white hover:text-indigo-600 after:bg-indigo-600 dark:after:bg-white duration-500 ease-in-out"
+          class="btn btn-accent"
           >Get the Book <i class="uil uil-arrow-right"></i
         ></a>
       </div>
@@ -550,10 +550,12 @@
     class="absolute inset-0 bg-gradient-to-r to-transparent via-white dark:via-slate-900 from-white dark:from-slate-900"
   ></div>
   <div class="container mx-auto relative">
-    <div class="grid grid-cols-12">
+    <div class="grid grid-cols-12 mx-auto">
       <div class="col-span-12">
         <div class="py-[60px] px-0">
-          <div class="grid grid-cols-1 text-center">
+          <div
+            class="grid grid-cols-1 text-center place-content-center place-items-center"
+          >
             <div>
               <a
                 href="mailto:support@codewithahsan.dev"
@@ -645,35 +647,8 @@
 
   <!--end footer-->
   <!-- Footer End -->
-
-  <!-- Back to top -->
-  <!-- <a
-    href="#"
-    onclick="topFunction()"
-    id="back-to-top"
-    class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-indigo-600 text-white leading-9"
-    ><i class="uil uil-arrow-up"></i
-  ></a> -->
-  <!-- Back to top -->
-
-  <!-- Switcher -->
-  <!-- <div class="fixed top-[30%] -right-2 z-50">
-  <span class="relative inline-block rotate-90">
-    <input type="checkbox" class="checkbox opacity-0 absolute" id="chk" />
-    <label
-      class="label bg-slate-900 dark:bg-white shadow dark:shadow-gray-800 cursor-pointer rounded-full flex justify-between items-center p-1 w-14 h-8"
-      for="chk"
-    >
-      <i class="uil uil-moon text-[20px] text-yellow-500"></i>
-      <i class="uil uil-sun text-[20px] text-yellow-500"></i>
-      <span
-        class="ball bg-white dark:bg-slate-900 rounded-full absolute top-[2px] left-[2px] size-7"
-      ></span>
-    </label>
-  </span>
-</div> -->
-  <span appBehaviors>&nbsp;</span>
   <div class="fixed bottom-10 right-10 z-50">
-    <app-chat></app-chat>
+    <app-chat btnClasses="scale-125"></app-chat>
   </div>
 </footer>
+<span appBehaviors>&nbsp;</span>
