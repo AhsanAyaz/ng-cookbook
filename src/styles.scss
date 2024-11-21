@@ -1,11 +1,12 @@
+@use "sass:meta";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import "./styles/topnav";
-@import "./styles/helper";
-@import "./styles/testi";
-@import "./styles/cdk";
+@include meta.load-css("styles/topnav");
+@include meta.load-css("styles/helper");
+@include meta.load-css("styles/testi");
+@include meta.load-css("styles/cdk");
 @font-face {
   font-family: "Nunito";
   src: url(assets/fonts/Nunito-Regular.ttf);
