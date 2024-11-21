@@ -13,13 +13,12 @@ import { FormsModule } from '@angular/forms';
 import { ChatService, Message } from '../services/chat.service';
 import { Subscription } from 'rxjs';
 import { MarkdownComponent } from './markdown/markdown.component';
-import { Analytics, logEvent } from '@angular/fire/analytics';
 import { AnalyticsEvent } from '../constants/analyticsEvents';
 import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
 @Component({
-    selector: 'app-chat-modal',
-    imports: [CommonModule, FormsModule, MarkdownComponent],
-    template: `
+  selector: 'app-chat-modal',
+  imports: [CommonModule, FormsModule, MarkdownComponent],
+  template: `
     <div class="flex h-[80vh] flex-col w-[90vw] md:w-[50vw] mx-auto">
       <div
         class="flex justify-between items-center p-4  bg-slate-200 dark:bg-slate-900 rounded-xl mb-1"
@@ -248,7 +247,7 @@ import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
         </svg>
       </ng-template>
     </div>
-  `
+  `,
 })
 export class ChatModalComponent implements OnInit, OnDestroy {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
@@ -261,11 +260,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
   close = output<void>();
   private subscriptions: Subscription[] = [];
   events = AnalyticsEvent;
-  analytics = inject(Analytics);
   mixpanel = inject(MixpanelService);
-  sendAnalyticsEvent(event: AnalyticsEvent) {
-    logEvent(this.analytics, event);
-  }
 
   constructor(private chatService: ChatService) {}
 
@@ -279,7 +274,6 @@ export class ChatModalComponent implements OnInit, OnDestroy {
         ) {
           this.loading = false;
           this.streamingMessage = '';
-          this.sendAnalyticsEvent(this.events.NGCB2_CHAT_REQUEST_ERROR);
           this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_REQUEST_ERROR);
         }
         this.scrollToBottom();
@@ -321,12 +315,10 @@ export class ChatModalComponent implements OnInit, OnDestroy {
     try {
       await this.chatService.sendMessage(content);
       if (isSuggestion) {
-        this.sendAnalyticsEvent(this.events.NGCB2_CHAT_SUGGESTION_CLICK);
         this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_SUGGESTION_CLICK, {
           message: content,
         });
       } else {
-        this.sendAnalyticsEvent(this.events.NGCB2_CHATAI_MESSAGE);
         this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHATAI_QUERY, {
           message: content,
         });
@@ -344,7 +336,6 @@ export class ChatModalComponent implements OnInit, OnDestroy {
       const userMessage = this.messages[index - 1].content;
       this.messages.splice(index, 1);
       await this.sendMessage(userMessage);
-      this.sendAnalyticsEvent(this.events.NGCB2_CHAT_REGENERATE_CLICK);
       this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_REGENERATE_CLICK, {
         message: message.content,
       });
@@ -362,6 +353,5 @@ export class ChatModalComponent implements OnInit, OnDestroy {
 
   closeModal() {
     this.close.emit();
-    this.sendAnalyticsEvent(this.events.NGCB2_CHATAI_CLOSE);
   }
 }

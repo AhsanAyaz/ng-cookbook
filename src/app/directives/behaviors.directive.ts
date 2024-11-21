@@ -187,9 +187,9 @@ export class BehaviorsDirective implements AfterViewInit {
     /*/*            08) Tobii lightbox         */
     //=========================================//
 
-    try {
-      const tobii = new Tobii();
-    } catch (err) {}
+    // try {
+    //   const tobii = new Tobii();
+    // } catch (err) {}
 
     //=========================================//
     /*/*            Top Function               */

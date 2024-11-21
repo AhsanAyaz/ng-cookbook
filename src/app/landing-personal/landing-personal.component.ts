@@ -3,7 +3,6 @@ import { BehaviorsDirective } from '../directives/behaviors.directive';
 import { FeatherModule } from 'angular-feather';
 import { BookHeightDirective } from '../directives/book-height.directive';
 import { ChatComponent } from '../components/chat.component';
-import { logEvent, Analytics } from '@angular/fire/analytics';
 import { AnalyticsEvent } from '../constants/analyticsEvents';
 import { MixpanelEvent } from '../services/mixpanel.service';
 import { MixpanelService } from '../services/mixpanel.service';
@@ -22,16 +21,13 @@ import { DemoAppVideosComponent } from '../components/demo-app-videos/demo-app-v
 })
 export class LandingPersonalComponent {
   events = AnalyticsEvent;
-  analytics = inject(Analytics);
   mixpanel = inject(MixpanelService);
 
   buyClick() {
-    logEvent(this.analytics, this.events.NGCB2_BUY_CLICK);
     this.mixpanel.logEvent(MixpanelEvent.NGCB2_BUY_CLICK);
   }
 
   gitHubClick() {
-    logEvent(this.analytics, this.events.NGCB2_GH_CLICK);
     this.mixpanel.logEvent(MixpanelEvent.NGCB2_GH_CLICK);
   }
 }
