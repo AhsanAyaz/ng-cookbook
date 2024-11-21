@@ -10,11 +10,10 @@ import { MixpanelService } from './services/mixpanel.service';
 import { DebugService } from './services/debug.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    imports: [CommonModule, RouterOutlet],
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'ng-cookbook';

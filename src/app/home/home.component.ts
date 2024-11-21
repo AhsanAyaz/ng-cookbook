@@ -5,11 +5,10 @@ import { Analytics, getAnalytics, logEvent } from '@angular/fire/analytics';
 import { HeaderComponent } from '../components/header/header.component';
 import { AnalyticsEvent } from '../constants/analyticsEvents';
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, MailchimpNg2eComponent, HeaderComponent],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+    selector: 'app-home',
+    imports: [CommonModule, MailchimpNg2eComponent, HeaderComponent],
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
   events = AnalyticsEvent;

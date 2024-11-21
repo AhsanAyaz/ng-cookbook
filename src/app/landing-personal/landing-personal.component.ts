@@ -8,16 +8,15 @@ import { AnalyticsEvent } from '../constants/analyticsEvents';
 import { MixpanelEvent } from '../services/mixpanel.service';
 import { MixpanelService } from '../services/mixpanel.service';
 @Component({
-  selector: 'app-landing-personal',
-  standalone: true,
-  imports: [
-    BehaviorsDirective,
-    FeatherModule,
-    BookHeightDirective,
-    ChatComponent,
-  ],
-  templateUrl: './landing-personal.component.html',
-  styleUrl: './landing-personal.component.scss',
+    selector: 'app-landing-personal',
+    imports: [
+        BehaviorsDirective,
+        FeatherModule,
+        BookHeightDirective,
+        ChatComponent,
+    ],
+    templateUrl: './landing-personal.component.html',
+    styleUrl: './landing-personal.component.scss'
 })
 export class LandingPersonalComponent {
   events = AnalyticsEvent;

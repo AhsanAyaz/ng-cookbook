@@ -6,10 +6,9 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { ChatModalComponent } from './chat-modal.component';
 
 @Component({
-  selector: 'app-chat',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  template: `
+    selector: 'app-chat',
+    imports: [CommonModule, FormsModule],
+    template: `
     <button
       (click)="openChatModal()"
       class="btn btn-accent {{ btnClasses() }}"
@@ -28,7 +27,7 @@ import { ChatModalComponent } from './chat-modal.component';
         <img src="assets/images/bot.png" alt="chat" class="w-6 h-6" />
       </span>
     </button>
-  `,
+  `
 })
 export class ChatComponent {
   showText = input(false);

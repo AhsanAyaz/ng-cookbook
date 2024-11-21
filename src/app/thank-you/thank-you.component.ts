@@ -4,11 +4,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { PULSE_CHECKER_SESSIONS } from '../assets/pulsechecker-sessions';
 
 @Component({
-  selector: 'app-thank-you',
-  standalone: true,
-  imports: [HeaderComponent],
-  templateUrl: './thank-you.component.html',
-  styleUrl: './thank-you.component.scss',
+    selector: 'app-thank-you',
+    imports: [HeaderComponent],
+    templateUrl: './thank-you.component.html',
+    styleUrl: './thank-you.component.scss'
 })
 export class ThankYouComponent {
   recipeName = input<string>();

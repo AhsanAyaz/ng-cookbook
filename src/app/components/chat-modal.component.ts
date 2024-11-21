@@ -17,10 +17,9 @@ import { Analytics, logEvent } from '@angular/fire/analytics';
 import { AnalyticsEvent } from '../constants/analyticsEvents';
 import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
 @Component({
-  selector: 'app-chat-modal',
-  standalone: true,
-  imports: [CommonModule, FormsModule, MarkdownComponent],
-  template: `
+    selector: 'app-chat-modal',
+    imports: [CommonModule, FormsModule, MarkdownComponent],
+    template: `
     <div class="flex h-[80vh] flex-col w-[90vw] md:w-[50vw] mx-auto">
       <div
         class="flex justify-between items-center p-4  bg-slate-200 dark:bg-slate-900 rounded-xl mb-1"
@@ -249,7 +248,7 @@ import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
         </svg>
       </ng-template>
     </div>
-  `,
+  `
 })
 export class ChatModalComponent implements OnInit, OnDestroy {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;

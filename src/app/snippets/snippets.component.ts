@@ -4,11 +4,10 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-snippets',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './snippets.component.html',
-  styleUrls: ['./snippets.component.scss']
+    selector: 'app-snippets',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './snippets.component.html',
+    styleUrls: ['./snippets.component.scss']
 })
 export class SnippetsComponent implements OnInit {
   route = inject(ActivatedRoute);

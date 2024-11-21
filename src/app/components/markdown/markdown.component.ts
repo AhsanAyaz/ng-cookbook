@@ -18,10 +18,9 @@ export type SourceData = {
 };
 
 @Component({
-  selector: 'app-markdown',
-  template: ` <div [innerHTML]="sanitizedContent"></div> `,
-  standalone: true,
-  imports: [CommonModule],
+    selector: 'app-markdown',
+    template: ` <div [innerHTML]="sanitizedContent"></div> `,
+    imports: [CommonModule]
 })
 export class MarkdownComponent {
   @Input() content: string = '';
