@@ -237,9 +237,9 @@ export class BehaviorsDirective implements AfterViewInit {
     /*********************/
     /*     Small Menu    */
     /*********************/
-    try {
-      const spy = new Gumshoe('#navmenu-nav a');
-    } catch (err) {}
+    // try {
+    //   const spy = new Gumshoe('#navmenu-nav a');
+    // } catch (err) {}
 
     // /*********************/
     // /*      WoW Js       */

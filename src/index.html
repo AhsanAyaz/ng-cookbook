@@ -66,12 +66,6 @@
     />
     <link rel="stylesheet" href="assets/libs/@iconscout/unicons/css/line.css" />
     <link rel="manifest" href="assets/favicon/site.webmanifest" />
-    <link
-      href="assets/libs/@mdi/font/css/materialdesignicons.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="assets/libs/tobii/css/tobii.min.css" rel="stylesheet" />
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#1976d2" />
     <script type="application/ld+json">
@@ -112,6 +106,33 @@
         "depth": "2.75 cm"
       }
     </script>
+    <!-- Preload critical images -->
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/ahsan-angular.jpg"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/hero-text-lg.png"
+      fetchpriority="high"
+      media="(min-width: 768px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/hero-text-sm.png"
+      fetchpriority="high"
+      media="(max-width: 767px)"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/ng-cookbook-black.jpg"
+      fetchpriority="high"
+    />
   </head>
   <body
     class="font-nunito text-base text-black dark:text-white dark:bg-slate-900"
@@ -120,9 +141,6 @@
     <noscript
       >Please enable JavaScript to continue using this application.</noscript
     >
-    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/gumshoe@4/dist/gumshoe.polyfills.min.js"></script>
-    <script src="/assets/libs/tobii/js/tobii.min.js"></script>
-    <script src="/assets/libs/shufflejs/shuffle.min.js"></script>
 
     <script src="/assets/libs/jarallax/jarallax.min.js"></script>
   </body>

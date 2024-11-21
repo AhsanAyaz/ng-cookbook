@@ -6,8 +6,5 @@ import { LandingPersonalComponent } from '../landing-personal/landing-personal.c
   imports: [LandingPersonalComponent],
   templateUrl: './home-wrapper.component.html',
   styleUrl: './home-wrapper.component.scss',
-  host: {
-    'attr.ngSkipHydration': 'true',
-  },
 })
 export class HomeWrapperComponent {}

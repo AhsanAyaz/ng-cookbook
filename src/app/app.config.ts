@@ -57,6 +57,7 @@ import {
   Layers,
   GitBranch,
 } from 'angular-feather/icons';
+import { provideClientHydration } from '@angular/platform-browser';
 
 const icons = {
   ArrowUp,
@@ -99,6 +100,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withComponentInputBinding(), withHashLocation()),
     provideHttpClient(withFetch()),
+    provideClientHydration(),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
