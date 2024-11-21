@@ -61,7 +61,7 @@
 <!-- Start Home -->
 <section
   id="jarallaxContainer"
-  class="relative flex h-[70vh] min-h-[70vh] md:h-screen md:min-h-screen py-44 items-center"
+  class="relative flex h-[90vh] min-h-[90vh] md:h-screen md:min-h-screen py-44 items-center"
 >
   <div
     class="absolute md:block inset-0 w-full jarallax bg-cover bg-bottom md:h-screen"
@@ -127,95 +127,11 @@
         build efficient, maintainable, and scalable Angular applications.
       </p>
     </div>
-    <!--end grid-->
-
-    <div
-      class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px] mx-auto"
-    >
-      <div class="relative overflow-hidden h-fit">
-        <img
-          src="assets/images/screencasts/cdk-drag-drop.gif"
-          class="rounded-md"
-          alt=""
-        />
-        <div
-          class="absolute inset-0 h-full w-full bg-gradient-to-t to-transparent via-white/80 dark:via-slate-900/80 from-white dark:from-slate-900"
-        ></div>
-
-        <div class="absolute text-center p-6 bottom-0 start-0 end-0">
-          <a
-            href="https://packtpublishing.github.io/Angular-Cookbook-2E/chapter09/ng-cdk-drag-drop/final/"
-            class="font-semibold text-lg"
-            target="_blank"
-            >Angular CDK Drag & Drop <i class="uil uil-arrow-up-right"></i
-          ></a>
-        </div>
-      </div>
-      <!--end content-->
-
-      <div class="relative overflow-hidden h-fit lg:mt-16">
-        <img
-          src="assets/images/screencasts/cdk-stepper.webp"
-          class="rounded-md"
-          alt=""
-        />
-        <div
-          class="absolute inset-0 h-full w-full bg-gradient-to-t to-transparent via-white/80 dark:via-slate-900/80 from-white dark:from-slate-900"
-        ></div>
-
-        <div class="absolute text-center p-6 bottom-0 start-0 end-0">
-          <a
-            href="https://packtpublishing.github.io/Angular-Cookbook-2E/chapter09/ng-cdk-stepper/final/index.html"
-            class="font-semibold text-lg"
-            target="_blank"
-            >Angular CDK Stepper <i class="uil uil-arrow-up-right"></i
-          ></a>
-        </div>
-      </div>
-      <!--end content-->
-
-      <div class="relative overflow-hidden h-fit">
-        <img
-          src="assets/images/screencasts/route-animations.gif"
-          class="rounded-md"
-          alt=""
-        />
-        <div
-          class="absolute inset-0 h-full w-full bg-gradient-to-t to-transparent via-white/80 dark:via-slate-900/80 from-white dark:from-slate-900"
-        ></div>
-
-        <div class="absolute text-center p-6 bottom-0 start-0 end-0">
-          <a
-            href="https://packtpublishing.github.io/Angular-Cookbook-2E/chapter04/ng-route-animations/final/"
-            class="font-semibold text-lg"
-            target="_blank"
-            >Angular Route Animations <i class="uil uil-arrow-up-right"></i
-          ></a>
-        </div>
-      </div>
-      <!--end content-->
-
-      <div class="relative overflow-hidden h-fit lg:mt-16">
-        <img
-          src="assets/images/screencasts/multi-observable.webp"
-          class="rounded-md"
-          alt=""
-        />
-        <div
-          class="absolute inset-0 h-full w-full bg-gradient-to-t to-transparent via-white/80 dark:via-slate-900/80 from-white dark:from-slate-900"
-        ></div>
-
-        <div class="absolute text-center p-6 bottom-0 start-0 end-0">
-          <a
-            href="https://packtpublishing.github.io/Angular-Cookbook-2E/chapter05/rx-multiple-streams/final/"
-            class="font-semibold text-lg"
-            target="_blank"
-            >RxJS Multi Observable Streams<i class="uil uil-arrow-up-right"></i
-          ></a>
-        </div>
-      </div>
-      <!--end content-->
-    </div>
+    @defer (on viewport; hydrate never;) {
+    <app-demo-app-videos />
+    } @placeholder {
+    <div>&nbsp;</div>
+    }
     <!--end grid-->
   </div>
   <!--end container-->

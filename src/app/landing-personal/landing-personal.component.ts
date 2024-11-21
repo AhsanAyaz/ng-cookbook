@@ -3,20 +3,22 @@ import { BehaviorsDirective } from '../directives/behaviors.directive';
 import { FeatherModule } from 'angular-feather';
 import { BookHeightDirective } from '../directives/book-height.directive';
 import { ChatComponent } from '../components/chat.component';
-import { logEvent, getAnalytics, Analytics } from '@angular/fire/analytics';
+import { logEvent, Analytics } from '@angular/fire/analytics';
 import { AnalyticsEvent } from '../constants/analyticsEvents';
 import { MixpanelEvent } from '../services/mixpanel.service';
 import { MixpanelService } from '../services/mixpanel.service';
+import { DemoAppVideosComponent } from '../components/demo-app-videos/demo-app-videos.component';
 @Component({
-    selector: 'app-landing-personal',
-    imports: [
-        BehaviorsDirective,
-        FeatherModule,
-        BookHeightDirective,
-        ChatComponent,
-    ],
-    templateUrl: './landing-personal.component.html',
-    styleUrl: './landing-personal.component.scss'
+  selector: 'app-landing-personal',
+  imports: [
+    BehaviorsDirective,
+    FeatherModule,
+    BookHeightDirective,
+    ChatComponent,
+    DemoAppVideosComponent,
+  ],
+  templateUrl: './landing-personal.component.html',
+  styleUrl: './landing-personal.component.scss',
 })
 export class LandingPersonalComponent {
   events = AnalyticsEvent;
