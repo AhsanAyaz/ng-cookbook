@@ -1,6 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { PLATFORM_ID } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { DebugService } from './debug.service';
+
+declare global {
+  interface Window {
+    DEBUG?: boolean;
+  }
+}
 
 export interface Message {
   id: string;
@@ -19,10 +27,12 @@ interface StreamChunk {
   providedIn: 'root',
 })
 export class ChatService {
+  private platformId = inject(PLATFORM_ID);
   private apiUrl = environment.chatApiUrl;
   private messagesSubject = new BehaviorSubject<Message[]>([]);
   private streamingMessageSubject = new Subject<string>();
   private suggestedQuestionsSubject = new Subject<string[]>();
+  private debugService = inject(DebugService);
 
   messages$ = this.messagesSubject.asObservable();
   streamingMessage$ = this.streamingMessageSubject.asObservable();
@@ -78,70 +88,114 @@ export class ChatService {
     let assistantMessage = '';
     const decoder = new TextDecoder();
 
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
+    try {
+      this.debug('Starting to handle streaming response');
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) {
+          this.debug('Reader signals done');
+          break;
+        }
 
-      const chunk = decoder.decode(value, { stream: true });
-      const lines = chunk.split('\n');
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split('\n');
 
-      for (const line of lines) {
-        if (line.trim() === '') continue;
+        for (const line of lines) {
+          if (line.trim() === '') continue;
 
-        const parsedChunk = this.parseChunk(line);
-        if (parsedChunk) {
-          if (parsedChunk.data === '') continue;
-          switch (parsedChunk.type) {
-            case 'content':
-              assistantMessage += parsedChunk.data;
-              this.streamingMessageSubject.next(parsedChunk.data);
-              break;
-            case 'suggested_questions':
-              this.suggestedQuestionsSubject.next(parsedChunk.data);
-              break;
-            case 'event':
-            case 'sources':
-              // Handle events and sources if needed
-              console.log(parsedChunk.type, parsedChunk.data);
-              break;
+          const parsedChunk = this.parseChunk(line);
+          if (parsedChunk) {
+            if (parsedChunk.data === '') continue;
+            switch (parsedChunk.type) {
+              case 'content':
+                assistantMessage += parsedChunk.data;
+                this.streamingMessageSubject.next(parsedChunk.data);
+                break;
+              case 'suggested_questions':
+                if (assistantMessage) {
+                  this.suggestedQuestionsSubject.next(parsedChunk.data);
+                }
+                break;
+              case 'event':
+              case 'sources':
+                this.debug(parsedChunk.type, parsedChunk.data);
+                break;
+            }
           }
         }
       }
-    }
 
-    if (assistantMessage) {
-      this.addAssistantMessage(assistantMessage);
+      if (assistantMessage.trim()) {
+        this.addAssistantMessage(assistantMessage);
+      }
+    } catch (error) {
+      this.debug('Error in streaming response:', error);
+      console.error('Error in streaming response:', error);
+      this.streamingMessageSubject.next('');
+    } finally {
+      this.debug('Sending streaming done signal');
+      this.streamingMessageSubject.next('ACTION: streaming_done');
     }
-    this.streamingMessageSubject.next('ACTION: streaming_done');
   }
 
   private parseChunk(chunk: string): StreamChunk | null {
+    this.debug('Parsing chunk:', chunk);
+
     if (chunk.startsWith('0:')) {
       try {
+        const rawContent = chunk.slice(2).replace(/^"|"$/g, '');
+        this.debug('Raw content before decode:', rawContent);
+
+        const decodedContent = decodeURIComponent(rawContent);
+        this.debug('Decoded content:', decodedContent);
+
         return {
           type: 'content',
-          data: decodeURIComponent(chunk.slice(2).replace(/^"|"$/g, '')),
+          data: decodedContent,
         };
       } catch (e) {
-        console.error('Error parsing chunk:', e);
+        this.debug('Error decoding content chunk:', {
+          error: e,
+          originalChunk: chunk,
+          slicedContent: chunk.slice(2),
+        });
+        // Fallback parsing without decoding
+        const fallbackContent = chunk.slice(2).replace(/^"|"$/g, '');
+        this.debug('Using fallback content:', fallbackContent);
         return {
           type: 'content',
-          data: chunk.slice(2).replace(/^"|"$/g, ''),
+          data: fallbackContent,
         };
       }
     }
+
     if (chunk.startsWith('8:')) {
       try {
-        const parsed = JSON.parse(decodeURIComponent(chunk.slice(2)));
+        const rawEventData = chunk.slice(2);
+        this.debug('Raw event data before decode:', rawEventData);
+
+        const decodedEventData = decodeURIComponent(rawEventData);
+        this.debug('Decoded event data:', decodedEventData);
+
+        const parsed = JSON.parse(decodedEventData);
+        this.debug('Parsed event data:', parsed);
+
         if (Array.isArray(parsed) && parsed.length > 0) {
           const { type, data } = parsed[0];
           return { type, data };
         }
+        this.debug('Invalid event data format:', parsed);
       } catch (e) {
-        console.error('Error parsing chunk:', e);
+        this.debug('Error parsing event chunk:', {
+          error: e,
+          originalChunk: chunk,
+          slicedContent: chunk.slice(2),
+        });
         return null;
       }
     }
+
+    this.debug('Unknown chunk format, skipping:', chunk);
     return null;
   }
 
@@ -158,5 +212,11 @@ export class ChatService {
     };
     const currentMessages = this.messagesSubject.getValue();
     this.messagesSubject.next([...currentMessages, newMessage]);
+  }
+
+  private debug(message: string, ...args: any[]) {
+    if (this.debugService.isDebugEnabled()) {
+      console.log(`[ChatService] ${message}`, ...args);
+    }
   }
 }

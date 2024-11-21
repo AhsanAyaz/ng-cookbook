@@ -279,6 +279,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
           messages.at(-1)?.content === 'Sorry, an error occurred.'
         ) {
           this.loading = false;
+          this.streamingMessage = '';
           this.sendAnalyticsEvent(this.events.NGCB2_CHAT_REQUEST_ERROR);
           this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_REQUEST_ERROR);
         }
@@ -290,7 +291,9 @@ export class ChatModalComponent implements OnInit, OnDestroy {
           this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHATAI_RESPONSE, {
             message: this.streamingMessage,
           });
-          this.streamingMessage = '';
+          setTimeout(() => {
+            this.streamingMessage = '';
+          }, 100);
         } else {
           this.streamingMessage += content;
         }
@@ -310,21 +313,29 @@ export class ChatModalComponent implements OnInit, OnDestroy {
 
   async sendMessage(content: string = this.userInput, isSuggestion = false) {
     if (content.trim() === '' || this.loading || this.streamingMessage) return;
+
+    this.streamingMessage = '';
     this.loading = true;
     this.userInput = '';
-    this.streamingMessage = '';
     this.suggestedQuestions = [];
-    await this.chatService.sendMessage(content);
-    if (isSuggestion) {
-      this.sendAnalyticsEvent(this.events.NGCB2_CHAT_SUGGESTION_CLICK);
-      this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_SUGGESTION_CLICK, {
-        message: content,
-      });
-    } else {
-      this.sendAnalyticsEvent(this.events.NGCB2_CHATAI_MESSAGE);
-      this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHATAI_QUERY, {
-        message: content,
-      });
+
+    try {
+      await this.chatService.sendMessage(content);
+      if (isSuggestion) {
+        this.sendAnalyticsEvent(this.events.NGCB2_CHAT_SUGGESTION_CLICK);
+        this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_SUGGESTION_CLICK, {
+          message: content,
+        });
+      } else {
+        this.sendAnalyticsEvent(this.events.NGCB2_CHATAI_MESSAGE);
+        this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHATAI_QUERY, {
+          message: content,
+        });
+      }
+    } catch (error) {
+      this.loading = false;
+      this.streamingMessage = '';
+      console.error('Error sending message:', error);
     }
   }
 

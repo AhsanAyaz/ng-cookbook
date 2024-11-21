@@ -66,6 +66,8 @@ body {
   flex: 1;
 }
 
-// a[href] {
-//   @apply text-purple-700 cursor-pointer;
-// }
+app-markdown {
+  code {
+    @apply text-primary;
+  }
+}
