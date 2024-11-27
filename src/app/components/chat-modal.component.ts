@@ -7,6 +7,7 @@ import {
   viewChild,
   output,
   inject,
+  signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -68,9 +69,9 @@ import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
           >
             {{ suggestion }}
           </button>
-          } @if(!loading && !streamingMessage) {
+          } @if(!loading && !streamingMessage()) {
           <button
-            [disabled]="loading || streamingMessage"
+            [disabled]="loading || streamingMessage()"
             (click)="regenerateResponse(message)"
             class="px-2 py-1 bg-gray-200 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-600 dark:hover:text-white dark:bg-slate-800 rounded text-sm"
             [ngClass]="{ 'col-span-2': suggestedQuestions.length === 0 }"
@@ -95,20 +96,20 @@ import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
             >
           </div>
         </div>
-        } @if(loading && !streamingMessage) {
+        } @if(loading && !streamingMessage()) {
         <div class="flex flex-row-reverse items-center justify-start">
           <img class="ml-2 h-8 w-8 rounded-full" src="assets/images/bot.png" />
           <!-- Adjust size as needed -->
           <ng-container [ngTemplateOutlet]="loadingSpinner" ]></ng-container>
         </div>
-        } @if(streamingMessage) {
+        } @if(streamingMessage()) {
         <div class="flex flex-row-reverse items-start">
           <img class="ml-2 h-8 w-8 rounded-full" src="assets/images/bot.png" />
 
           <div
             class="flex min-h-[85px] rounded-b-xl rounded-tl-xl bg-slate-50 p-4 dark:bg-slate-800 sm:min-h-0 sm:max-w-md md:max-w-2xl"
           >
-            <app-markdown [content]="streamingMessage"></app-markdown>
+            <app-markdown [content]="streamingMessage()"></app-markdown>
           </div>
           <div
             class="mr-2 mt-1 flex flex-col-reverse gap-2 text-slate-500 sm:flex-row"
@@ -217,7 +218,7 @@ import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
             autofocus
           ></textarea>
           <button
-            [disabled]="loading || streamingMessage"
+            [disabled]="loading || streamingMessage()"
             type="submit"
             class="disabled:opacity-50 disabled:cursor-not-allowed absolute bottom-2 right-2.5 rounded-lg bg-indigo-700 px-4 py-2 text-sm font-medium text-slate-200 hover:bg-indigo-800 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800 sm:text-base"
           >
@@ -254,7 +255,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
   textInput = viewChild.required<ElementRef<HTMLTextAreaElement>>('textInput');
   userInput = '';
   messages: Message[] = [];
-  streamingMessage = '';
+  streamingMessage = signal('');
   suggestedQuestions: string[] = [];
   loading = false;
   close = output<void>();
@@ -273,7 +274,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
           messages.at(-1)?.content === 'Sorry, an error occurred.'
         ) {
           this.loading = false;
-          this.streamingMessage = '';
+          this.streamingMessage.set('');
           this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHAT_REQUEST_ERROR);
         }
         this.scrollToBottom();
@@ -282,13 +283,13 @@ export class ChatModalComponent implements OnInit, OnDestroy {
         if (content === 'ACTION: streaming_done') {
           this.loading = false;
           this.mixpanel.logEvent(MixpanelEvent.NGCB2_CHATAI_RESPONSE, {
-            message: this.streamingMessage,
+            message: this.streamingMessage(),
           });
           setTimeout(() => {
-            this.streamingMessage = '';
+            this.streamingMessage.set('');
           }, 100);
         } else {
-          this.streamingMessage += content;
+          this.streamingMessage.update((prev) => prev + content);
         }
         this.scrollToBottom();
       }),
@@ -305,9 +306,10 @@ export class ChatModalComponent implements OnInit, OnDestroy {
   }
 
   async sendMessage(content: string = this.userInput, isSuggestion = false) {
-    if (content.trim() === '' || this.loading || this.streamingMessage) return;
+    if (content.trim() === '' || this.loading || this.streamingMessage())
+      return;
 
-    this.streamingMessage = '';
+    this.streamingMessage.set('');
     this.loading = true;
     this.userInput = '';
     this.suggestedQuestions = [];
@@ -325,7 +327,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
       }
     } catch (error) {
       this.loading = false;
-      this.streamingMessage = '';
+      this.streamingMessage.set('');
       console.error('Error sending message:', error);
     }
   }
