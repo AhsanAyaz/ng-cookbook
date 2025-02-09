@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SafeHtml } from '@angular/platform-browser';
-import { MarkdownService } from 'ngx-markdown';
+import {
+  MarkdownService,
+  MarkdownComponent as MDComponent,
+} from 'ngx-markdown';
 import { inject } from '@angular/core';
 import { DebugService } from 'src/app/services/debug.service';
 
@@ -18,9 +20,24 @@ export type SourceData = {
 };
 
 @Component({
-    selector: 'app-markdown',
-    template: ` <div [innerHTML]="sanitizedContent"></div> `,
-    imports: [CommonModule]
+  selector: 'app-markdown',
+  template: `
+    <div
+      class="max-w-full w-full"
+      markdown
+      [innerHTML]="sanitizedContent"
+    ></div>
+  `,
+  styles: `
+    :host {
+      @apply w-full max-w-full;
+      ::ng-deep ol, ::ng-deep ul, ::ng-deep menu{
+        list-style: disc;
+        padding-inline: 20px;
+      }
+    }
+  `,
+  imports: [MDComponent],
 })
 export class MarkdownComponent {
   @Input() content: string = '';
@@ -30,11 +47,7 @@ export class MarkdownComponent {
   private debugService = inject(DebugService);
 
   constructor(private markdownService: MarkdownService) {
-    this.markdownService.renderer.link = (
-      href: string,
-      title: string,
-      text: string
-    ) => {
+    this.markdownService.renderer.link = ({ href, title, text }) => {
       return `<a href="${href}" target="_blank" class="text-indigo-600 underline hover:text-indigo-700" title="${title}">${text}</a>`;
     };
   }
@@ -56,8 +69,8 @@ export class MarkdownComponent {
     try {
       this.debug('Processing content:', content);
 
-      content = this.decodeUnicode(content);
-      this.debug('After Unicode decode:', content);
+      // content = this.decodeUnicode(content);
+      // this.debug('After Unicode decode:', content);
 
       content = content.normalize();
       this.debug('After normalization:', content);
@@ -78,28 +91,28 @@ export class MarkdownComponent {
     }
   }
 
-  private decodeUnicode(content: string): string {
-    this.debug('Decoding Unicode for content:', content);
-    try {
-      const decoded = content.replace(/\\u[\dA-F]{4}/gi, (match) => {
-        const charCode = parseInt(match.replace(/\\u/g, ''), 16);
-        this.debug('Decoded Unicode match:', {
-          original: match,
-          charCode,
-          result: String.fromCharCode(charCode),
-        });
-        return String.fromCharCode(charCode);
-      });
-      this.debug('Unicode decode result:', decoded);
-      return decoded;
-    } catch (e) {
-      this.debug('Error decoding Unicode:', {
-        error: e,
-        content,
-      });
-      return content;
-    }
-  }
+  // private decodeUnicode(content: string): string {
+  //   this.debug('Decoding Unicode for content:', content);
+  //   try {
+  //     const decoded = content.replace(/\\u[\dA-F]{4}/gi, (match) => {
+  //       const charCode = parseInt(match.replace(/\\u/g, ''), 16);
+  //       this.debug('Decoded Unicode match:', {
+  //         original: match,
+  //         charCode,
+  //         result: String.fromCharCode(charCode),
+  //       });
+  //       return String.fromCharCode(charCode);
+  //     });
+  //     this.debug('Unicode decode result:', decoded);
+  //     return decoded;
+  //   } catch (e) {
+  //     this.debug('Error decoding Unicode:', {
+  //       error: e,
+  //       content,
+  //     });
+  //     return content;
+  //   }
+  // }
 
   private sanitizeContent(content: string) {
     let parsedContent: Promise<string> | string = '';
@@ -108,25 +121,27 @@ export class MarkdownComponent {
 
       parsedContent = this.markdownService.parse(content, {
         decodeHtml: true,
-        inline: true,
+        inline: false,
         markedOptions: {
           gfm: true,
           breaks: true,
         },
       });
 
-      if (typeof parsedContent === 'string') {
-        this.debug('Parsed content (string):', parsedContent);
-        const decodedContent = parsedContent;
-        this.debug('Decoded content:', decodedContent);
-        return decodedContent;
-      } else {
-        this.debug('Parsed content (promise):', parsedContent);
-        return parsedContent.then((result) => {
-          this.debug('Promise result:', result);
-          return result;
-        });
-      }
+      return parsedContent;
+
+      // if (typeof parsedContent === 'string') {
+      //   this.debug('Parsed content (string):', parsedContent);
+      //   const decodedContent = parsedContent;
+      //   this.debug('Decoded content:', decodedContent);
+      //   return decodedContent;
+      // } else {
+      //   this.debug('Parsed content (promise):', parsedContent);
+      //   return parsedContent.then((result) => {
+      //     this.debug('Promise result:', result);
+      //     return result;
+      //   });
+      // }
     } catch (e) {
       if (typeof parsedContent !== 'string') {
         parsedContent.then((parsed) => {

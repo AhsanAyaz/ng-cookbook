@@ -20,7 +20,9 @@ import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
   selector: 'app-chat-modal',
   imports: [CommonModule, FormsModule, MarkdownComponent],
   template: `
-    <div class="flex h-[80vh] flex-col w-[90vw] md:w-[50vw] mx-auto">
+    <div
+      class="flex h-[80vh] flex-col w-[90vw] sm:max-w-md md:max-w-4xl mx-auto"
+    >
       <div
         class="flex justify-between items-center p-4  bg-slate-200 dark:bg-slate-900 rounded-xl mb-1"
       >
@@ -55,7 +57,7 @@ import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
           <img class="ml-2 h-8 w-8 rounded-full" src="assets/images/bot.png" />
 
           <div
-            class="flex min-h-[85px] rounded-b-xl rounded-tl-xl bg-slate-50 p-4 dark:bg-slate-800 sm:min-h-0 sm:max-w-md md:max-w-2xl"
+            class="flex min-h-[85px] max-w-[90%] rounded-b-xl rounded-tl-xl bg-slate-50 p-4 dark:bg-slate-800 sm:min-h-0"
           >
             <app-markdown [content]="message.content"></app-markdown>
           </div>
@@ -107,7 +109,7 @@ import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
           <img class="ml-2 h-8 w-8 rounded-full" src="assets/images/bot.png" />
 
           <div
-            class="flex min-h-[85px] rounded-b-xl rounded-tl-xl bg-slate-50 p-4 dark:bg-slate-800 sm:min-h-0 sm:max-w-md md:max-w-2xl"
+            class="flex min-h-[85px] max-w-[90%] rounded-b-xl rounded-tl-xl bg-slate-50 p-4 dark:bg-slate-800 sm:min-h-0 sm:max-w-md md:max-w-2xl"
           >
             <app-markdown [content]="streamingMessage()"></app-markdown>
           </div>
@@ -180,35 +182,29 @@ import { MixpanelEvent, MixpanelService } from '../services/mixpanel.service';
       <form class="mt-2" (submit)="sendMessage()">
         <label for="chat-input" class="sr-only">Enter your prompt</label>
         <div class="relative">
-          <button
+          <div
             type="button"
-            class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-indigo-600"
+            class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500 dark:text-slate-400 "
           >
             <svg
-              aria-hidden="true"
-              class="h-5 w-5"
-              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
-              stroke-width="2"
-              stroke="currentColor"
               fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-6"
             >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path
-                d="M9 2m0 3a3 3 0 0 1 3 -3h0a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3h0a3 3 0 0 1 -3 -3z"
-              ></path>
-              <path d="M5 10a7 7 0 0 0 14 0"></path>
-              <path d="M8 21l8 0"></path>
-              <path d="M12 17l0 4"></path>
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"
+              />
             </svg>
-            <span class="sr-only">Use voice input</span>
-          </button>
+          </div>
           <textarea
             #textInput
             id="chat-input"
-            class="block w-full resize-none rounded-xl border-none bg-slate-200 p-4 pl-10 pr-20 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 dark:bg-slate-900 dark:text-slate-200 dark:placeholder-slate-400 dark:focus:ring-indigo-600 sm:text-base"
+            class="block w-full resize-none rounded-xl border-none bg-slate-200 p-4 pl-14 pr-20 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-600 dark:bg-slate-900 dark:text-slate-200 dark:placeholder-slate-400 dark:focus:ring-indigo-600 sm:text-base"
             placeholder="Enter your prompt"
             rows="1"
             required
@@ -349,7 +345,7 @@ export class ChatModalComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.chatContainer.nativeElement.scrollTop =
           this.chatContainer.nativeElement.scrollHeight;
-      }, 100);
+      }, 500);
     } catch (err) {}
   }
 
