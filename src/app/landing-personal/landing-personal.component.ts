@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BehaviorsDirective } from '../directives/behaviors.directive';
 import { FeatherModule } from 'angular-feather';
-import { BookHeightDirective } from '../directives/book-height.directive';
 import { ChatComponent } from '../components/chat.component';
 import { AnalyticsEvent } from '../constants/analyticsEvents';
 import { MixpanelEvent } from '../services/mixpanel.service';
@@ -12,7 +11,6 @@ import { DemoAppVideosComponent } from '../components/demo-app-videos/demo-app-v
   imports: [
     BehaviorsDirective,
     FeatherModule,
-    BookHeightDirective,
     ChatComponent,
     DemoAppVideosComponent,
   ],

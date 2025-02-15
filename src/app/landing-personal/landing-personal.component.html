@@ -61,24 +61,28 @@
 <!-- Start Home -->
 <section
   id="jarallaxContainer"
-  class="relative flex h-[90vh] min-h-[90vh] md:h-screen md:min-h-screen py-44 items-center"
+  class="relative flex flex-col justify-center items-center md:flex-row h-screen max-h-screen min-h-[90vh] py-20 md:h-screen md:min-h-screen px-8"
 >
   <div
     class="absolute md:block inset-0 w-full jarallax bg-cover bg-bottom md:h-screen"
     data-jarallax
     data-speed="0.7"
-    style="background-image: url('assets/images/ahsan-angular.jpg')"
+    style="
+      background-image: url('assets/images/black-bg-opt.jpg');
+      opacity: 0.2;
+    "
     loading="eager"
     fetchpriority="high"
   ></div>
+  <!-- Large screen text -->
   <div
     data-jarallax
     data-speed="1.6"
-    class="absolute inset-0 md:w-[400px] xl:w-[500px] 2xl:w-[600px] md:left-auto md:right-0 md:top-[30%] 2xl:left-16 2xl:top-28 object-contain md:block hidden jarallax-img"
+    class="inset-0 md:left-auto max-w-[50%] md:right-0 md:top-[30%] 2xl:left-16 2xl:top-28 object-contain md:block hidden jarallax-img mx-auto z-10"
   >
     <img
       src="assets/images/hero-text-lg.png"
-      class="jarallax-img object-contain"
+      class="jarallax-img object-contain w-full"
       alt="Angular Cookbook - Learn Angular from scratch"
       loading="eager"
       fetchpriority="high"
@@ -86,13 +90,14 @@
       height="400"
     />
   </div>
+  <!-- Small screen text -->
   <div
     data-jarallax
     data-speed="1.6"
-    class="absolute inset-0 pt-32 h-max w-[200px] left-0 top-0 bottom-0 right-0 m-auto object-contain block md:hidden jarallax-img"
+    class="inset-0 h-max mx-auto w-[50vw] object-contain block md:hidden jarallax-img z-10"
   >
     <img
-      class="jarallax-img object-contain"
+      class="jarallax-img object-contain w-full"
       src="assets/images/hero-text-sm.png"
       alt="Angular Cookbook - Learn Angular from scratch"
       loading="eager"
@@ -101,15 +106,15 @@
       height="150"
     />
   </div>
+  <!-- Book image -->
   <div
     data-jarallax
     data-keep-img="true"
     data-speed="0.8"
-    class="hide-nested-image absolute inset-0 jarallax mx-auto right-0 bottom-0 top-auto object-contain md:pr-24"
+    class="hide-nested-image inset-0 jarallax mx-auto max-h-[50%] md:max-h-[70vh] max-w-fit object-contain flex-1"
   >
     <img
-      appBookHeight
-      class="jarallax-img object-contain object-center h-[40vh] w-full"
+      class="jarallax-img object-contain max-h-full h-[70vh] max-w-full w-full"
       src="assets/images/ng-cookbook-black.jpg"
       alt="Angular Cookbook Book Cover"
       loading="eager"
@@ -311,7 +316,7 @@
           </div>
           <div class="flex-1">
             <h4 class="mb-0 text-lg font-medium">
-              Reactive State Management with NgRx
+              Angular and RxJS - Awesomeness Combined
             </h4>
           </div>
         </a>

@@ -6,16 +6,16 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { ChatModalComponent } from './chat-modal.component';
 
 @Component({
-    selector: 'app-chat',
-    imports: [CommonModule, FormsModule],
-    template: `
+  selector: 'app-chat',
+  imports: [CommonModule, FormsModule],
+  template: `
     <button
       (click)="openChatModal()"
       class="btn btn-accent {{ btnClasses() }}"
       [ngClass]="!showText() ? 'btn-circle' : ''"
     >
       @if (showText()) {
-      <span>Chat with AI</span>
+      <span>Ask AI</span>
       }
       <span
         class="p-2 rounded-full shadow-lg"
@@ -27,7 +27,7 @@ import { ChatModalComponent } from './chat-modal.component';
         <img src="assets/images/bot.png" alt="chat" class="w-6 h-6" />
       </span>
     </button>
-  `
+  `,
 })
 export class ChatComponent {
   showText = input(false);
